@@ -1,81 +1,123 @@
 import React from 'react';
-import { Star, Shield, CheckCircle } from 'lucide-react';
+import { Star, CheckCircle, Shield, Calculator, Car } from 'lucide-react';
 import heroImage from '../assets/kanpur_hero.png';
 
 const Hero = () => {
   return (
     <section className="hero-section" style={{
       position: 'relative',
-      padding: '80px 0',
-      overflow: 'hidden',
-      backgroundColor: 'var(--gray-50)'
+      padding: '80px 40px',
+      backgroundColor: '#f5f5f5',
+      overflow: 'hidden'
     }}>
       <div className="container">
-        <div className="grid grid-2" style={{ alignItems: 'center' }}>
-          <div className="fade-in">
-            <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.875rem', fontWeight: 600, color: 'var(--primary)' }}>
-                <Star size={16} fill="var(--primary)" />
+        <div className="grid grid-2" style={{ alignItems: 'center', gap: '40px' }}>
+          <div className="fade-in" style={{ textAlign: 'left' }}>
+            <h1 className="hero-headline" style={{ 
+              fontSize: '56px', 
+              fontWeight: 700, 
+              color: '#1a1a1a', 
+              lineHeight: 1.1, 
+              marginBottom: '24px',
+              fontFamily: 'Poppins, sans-serif'
+            }}>
+              Premium Travel.<br />
+              <span style={{ color: '#2E7D32' }}>Transparent Pricing.</span><br />
+              Book in 5 Minutes.
+            </h1>
+            
+            <p className="hero-subheadline" style={{ 
+              fontSize: '20px', 
+              color: '#444', 
+              lineHeight: 1.6, 
+              marginBottom: '32px',
+              maxWidth: '600px',
+              fontFamily: 'Inter, sans-serif'
+            }}>
+              Over 5,000 customers trust Hello Kanpur Travels for safe, comfortable journeys across India. No hidden charges. Professional drivers. 24/7 support.
+            </p>
+
+            <div className="trust-badges" style={{ 
+              display: 'flex', 
+              gap: '24px', 
+              marginBottom: '32px',
+              flexWrap: 'wrap'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>
+                <Star size={20} fill="#FF9800" color="#FF9800" />
                 <span>4.7/5 Stars</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.875rem', fontWeight: 600, color: 'var(--secondary)' }}>
-                <CheckCircle size={16} fill="var(--secondary)" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>
+                <CheckCircle size={20} color="#2E7D32" />
                 <span>2,000+ Trips</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.875rem', fontWeight: 600, color: 'var(--accent)' }}>
-                <Shield size={16} fill="var(--accent)" />
-                <span>Fully Insured</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>
+                <Shield size={20} color="#2196F3" />
+                <span>Insured</span>
               </div>
             </div>
 
-            <h1 style={{ fontSize: '3.5rem', lineHeight: 1.1, marginBottom: '24px' }}>
-              Premium Travel. <span style={{ color: 'var(--primary)' }}>Transparent Pricing.</span> Book in 5 Minutes.
-            </h1>
-            <p style={{ fontSize: '1.25rem', color: 'var(--gray-600)', marginBottom: '40px', maxWidth: '540px' }}>
-              5,000+ Happy Customers trust us for safe, comfortable journeys across India. No hidden charges, verified drivers, and 24/7 support.
-            </p>
-
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="#booking" className="btn btn-primary btn-large">Book Your Trip</a>
-              <a href="#calculator" className="btn btn-secondary btn-large">Calculate Price</a>
+            <div className="cta-buttons" style={{ 
+              display: 'flex', 
+              gap: '16px', 
+              flexWrap: 'wrap' 
+            }}>
+              <a href="#booking" className="btn btn-primary hero-btn" style={{ 
+                height: '56px', 
+                minWidth: '200px', 
+                backgroundColor: '#2E7D32',
+                fontSize: '1.125rem',
+                boxShadow: '0 4px 6px rgba(46, 125, 50, 0.2)'
+              }}>
+                Book Your Trip
+              </a>
+              <a href="#calculator" className="btn btn-secondary hero-btn" style={{ 
+                height: '56px', 
+                minWidth: '200px', 
+                borderColor: '#2E7D32',
+                color: '#2E7D32',
+                fontSize: '1.125rem'
+              }}>
+                Calculate Price
+              </a>
             </div>
           </div>
 
-          <div className="fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="fade-in hero-image-container" style={{ animationDelay: '0.2s' }}>
             <div style={{
               position: 'relative',
               borderRadius: '24px',
               overflow: 'hidden',
               boxShadow: 'var(--shadow-xl)',
-              transform: 'perspective(1000px) rotateY(-5deg)'
+              transform: 'perspective(1000px)'
             }}>
-              <img src={heroImage} alt="Premium Luxury Car in Kanpur" style={{ width: '100%', height: 'auto' }} />
-              <div style={{
-                position: 'absolute',
-                bottom: '24px',
-                right: '24px',
-                backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(4px)',
-                padding: '12px 20px',
-                borderRadius: '12px',
-                boxShadow: 'var(--shadow-lg)'
-              }}>
-                <p style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--gray-900)' }}>Luxury Fleet</p>
-                <p style={{ fontSize: '0.75rem', color: 'var(--gray-600)' }}>14-seaters, Tempo, Premium Cars</p>
-              </div>
+              <img src={heroImage} alt="Premium Travel Vehicle" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
           </div>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
-          .hero-section h1 { font-size: 2.5rem !important; }
+        .hero-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        @media (max-width: 1200px) {
+          .hero-headline { fontSize: 48px !important; }
         }
         @media (max-width: 768px) {
-          .hero-section { padding: 40px 0 !important; }
-          .hero-section h1 { font-size: 2rem !important; }
-          .hero-section .grid { gap: 40px !important; }
+          .hero-section { padding: 48px 20px !important; }
+          .hero-headline { fontSize: 36px !important; text-align: center; }
+          .hero-subheadline { fontSize: 16px !important; text-align: center; margin-inline: auto; }
+          .trust-badges { justify-content: center; gap: 16px !important; }
+          .cta-buttons { flex-direction: column; width: 100%; }
+          .hero-btn { width: 100%; height: 48px !important; }
+          .grid-2 { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .hero-image-container { order: -1; width: 100%; }
+        }
+        @media (max-width: 375px) {
+          .hero-headline { fontSize: 32px !important; }
+          .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px !important; justify-items: center; }
         }
       `}</style>
     </section>
