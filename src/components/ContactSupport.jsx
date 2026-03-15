@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { 
   Phone, Mail, MessageSquare, MapPin, Clock, 
   ShieldCheck, Award, Star, CheckCircle2, 
-  Facebook, Twitter, Instagram, Linkedin, Send, ChevronDown, ChevronUp
+  Facebook, Twitter, Instagram, Linkedin, Send, 
+  ChevronDown, ChevronUp, UserCheck, Car, Heart, 
+  Handshake, Shield, Monitor
 } from 'lucide-react';
 
 const ContactSupport = () => {
@@ -19,7 +21,6 @@ const ContactSupport = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSending(true);
-    // Simulate sending
     setTimeout(() => {
       setIsSending(false);
       setIsSuccess(true);
@@ -50,13 +51,13 @@ const ContactSupport = () => {
             </div>
 
             <div style={{ padding: '32px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', border: '1px solid var(--gray-100)' }}>
-              <div style={{ width: '48px', height: '48px', backgroundColor: '#25D366', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: 'white' }}>
+              <div style={{ width: '48px', height: '48px', backgroundColor: '#25D336', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: 'white' }}>
                 <MessageSquare size={24} />
               </div>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>WhatsApp Chat</h3>
               <p style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--gray-900)', marginBottom: '4px' }}>+91-9876-543-210</p>
               <p style={{ fontSize: '0.875rem', color: 'var(--gray-500)', marginBottom: '20px' }}>Avg. response time: 2-5 minutes</p>
-              <button className="btn btn-primary" style={{ width: '100%', backgroundColor: '#25D366', borderColor: '#25D366' }} onClick={() => window.location.href = 'https://wa.me/919876543210'}>MESSAGE US</button>
+              <button className="btn btn-primary" style={{ width: '100%', backgroundColor: '#25D336', borderColor: '#25D336' }} onClick={() => window.location.href = 'https://wa.me/919876543210'}>MESSAGE US</button>
             </div>
 
             <div style={{ gridColumn: '1 / -1', padding: '32px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', border: '1px solid var(--gray-100)', display: 'flex', gap: '24px', alignItems: 'center' }}>
@@ -113,44 +114,82 @@ const ContactSupport = () => {
         {/* Credentials Section */}
         <div style={{ marginTop: '100px', paddingTop: '80px', borderTop: '1px solid var(--gray-100)' }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.875rem', color: 'var(--gray-500)', fontWeight: 700 }}>Trusted by Thousands • Certified & Insured</h4>
+            <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.875rem', color: 'var(--gray-500)', fontWeight: 700 }}>TRUSTED BY THOUSANDS • CERTIFIED & INSURED</h4>
           </div>
-          <div className="grid grid-4" style={{ gap: '30px' }}>
+          <div className="grid-credentials" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gap: '40px' 
+          }}>
             <div style={{ textAlign: 'center' }}>
-              <ShieldCheck size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
-              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>Full Insurance</h5>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>Comprehensive passenger coverage</p>
+              <Award size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>📜 GST Registered</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>18ABCDE1234F1Z5</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <Heart size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>🏆 Premium Service</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>10+ Years Trusted</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <Shield size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>🛡️ Fully Insured</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>Comprehensive coverage</p>
             </div>
             <div style={{ textAlign: 'center' }}>
               <UserCheck size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
-              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>Verified Drivers</h5>
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>✓ Verified Drivers</h5>
               <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>Background checked & trained</p>
             </div>
             <div style={{ textAlign: 'center' }}>
               <Star size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
-              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>4.7/5 Rated</h5>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>Based on 250+ recent reviews</p>
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>⭐ Highly Rated</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>4.7/5 from 250+ reviews</p>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <Award size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
-              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>GST Registered</h5>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>18ABCDE1234F1Z5</p>
+              <Car size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>🚗 Premium Fleet</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>25+ well-maintained vehicles</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <Clock size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>🕐 24/7 Support</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>Always available</p>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <ShieldCheck size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>✓ Safety Certified</h5>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>All protocols met</p>
             </div>
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 900px) {
+          .grid-credentials { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 500px) {
+          .grid-credentials { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 };
 
 export const Footer = () => {
-  const [openSection, setOpenSection] = useState(null);
+  const [openSections, setOpenSections] = useState({
+    company: false,
+    services: false,
+    legal: false
+  });
 
   const toggleSection = (section) => {
-    setOpenSection(openSection === section ? null : section);
+    if (window.innerWidth < 768) {
+      setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+    }
   };
 
-  const footerLinks = {
+  const footerLinksArr = {
     company: ['About Us', 'Contact', 'Blog', 'Careers'],
     services: ['Vehicles', 'Tour Packages', 'Pricing', 'Reviews'],
     legal: ['Privacy Policy', 'Terms & Conditions', 'Cancellation Policy', 'Refund Policy']
@@ -159,7 +198,12 @@ export const Footer = () => {
   return (
     <footer style={{ backgroundColor: 'var(--gray-900)', color: 'white', paddingTop: '80px', paddingBottom: '40px' }}>
       <div className="container">
-        <div className="grid grid-4" style={{ gap: '60px', marginBottom: '80px' }}>
+        <div className="footer-grid" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1.5fr', 
+          gap: '40px', 
+          marginBottom: '80px' 
+        }}>
           {/* Brand Column */}
           <div style={{ gridColumn: 'span 1' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
@@ -169,7 +213,7 @@ export const Footer = () => {
               <span style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.5px' }}>Hello Kanpur Travels</span>
             </div>
             <p style={{ color: 'var(--gray-400)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '24px' }}>
-              Premium travel rental booking service in Kanpur. Luxury cars and group travel across India.
+              Premium Travel Rentals Across India. Experience the difference of professional service.
             </p>
             <div style={{ display: 'flex', gap: '16px' }}>
               <a href="#" style={{ color: 'white' }}><Facebook size={20} /></a>
@@ -179,29 +223,55 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Links Columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title} className="footer-links-col">
-              <h4 style={{ color: 'white', marginBottom: '24px', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em' }}>{title}</h4>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
+          {/* Collapsible Sections */}
+          {Object.entries(footerLinksArr).map(([title, links]) => (
+            <div key={title} className="footer-col" style={{ gridColumn: 'span 1' }}>
+              <div 
+                onClick={() => toggleSection(title)}
+                style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center', 
+                  marginBottom: '24px',
+                  cursor: window.innerWidth < 768 ? 'pointer' : 'default'
+                }}
+              >
+                <h4 style={{ color: 'white', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em', margin: 0 }}>{title}</h4>
+                <div className="footer-chevron" style={{ display: 'none' }}>
+                  {openSections[title] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </div>
+              </div>
+              <ul style={{ 
+                listStyle: 'none', 
+                padding: 0, 
+                display: openSections[title] || window.innerWidth >= 768 ? 'block' : 'none',
+                transition: 'all 0.3s'
+              }}>
                 {links.map(link => (
                   <li key={link} style={{ marginBottom: '12px' }}>
-                    <a href="#" style={{ color: 'var(--gray-400)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.3s' }} className="footer-link">{link}</a>
+                    <a href="#" style={{ color: 'var(--gray-400)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.3s' }} className="footer-link-hover">{link}</a>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
 
-          {/* Newsletter Column */}
+          {/* Contact & Newsletter */}
           <div style={{ gridColumn: 'span 1' }}>
-            <h4 style={{ color: 'white', marginBottom: '24px', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em' }}>Newsletter</h4>
-            <p style={{ color: 'var(--gray-400)', fontSize: '0.875rem', marginBottom: '20px' }}>Get exclusive offers & travel updates.</p>
-            <div style={{ position: 'relative' }}>
-              <input type="email" placeholder="Email address" style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '12px 16px', color: 'white', fontSize: '0.875rem' }} />
-              <button style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'var(--primary)', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer' }}>
-                <Send size={16} />
-              </button>
+            <h4 style={{ color: 'white', marginBottom: '24px', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em' }}>NEWSLETTER</h4>
+            <div style={{ marginBottom: '24px' }}>
+               <div style={{ position: 'relative' }}>
+                <input type="email" placeholder="Email address" style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '12px 16px', color: 'white', fontSize: '0.875rem' }} />
+                <button style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'var(--primary)', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer' }}>
+                  <Send size={16} />
+                </button>
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.875rem', color: 'var(--gray-400)' }}>
+              <span style={{ color: 'white', fontWeight: 600 }}>CONTACT</span>
+              <span>Phone: +91-9876-543-210</span>
+              <span>Email: support@hellokanpurtravels.in</span>
+              <a href="https://wa.me/919876543210" style={{ color: '#25D336', textDecoration: 'none', fontWeight: 600 }}>WhatsApp Us</a>
             </div>
           </div>
         </div>
@@ -210,22 +280,22 @@ export const Footer = () => {
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           <p style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>© 2024 Hello Kanpur Travels. All rights reserved. | Sitemap</p>
           <div style={{ display: 'flex', gap: '24px' }}>
-            <span style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>Full Stack Experience</span>
             <span style={{ color: 'var(--gray-500)', fontSize: '0.8125rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <CheckCircle2 size={12} color="var(--primary)" /> SSL Secured
+              <ShieldCheck size={12} color="var(--primary)" /> SSL Secured
             </span>
           </div>
         </div>
       </div>
 
       <style>{`
-        .footer-link:hover { color: var(--primary) !important; }
-        @media (max-width: 992px) {
-          .grid-4 { grid-template-columns: 1fr 1fr !important; }
+        .footer-link-hover:hover { color: var(--primary) !important; }
+        @media (max-width: 1024px) {
+          .footer-grid { grid-template-columns: 1fr 1fr !important; }
         }
-        @media (max-width: 576px) {
-          .grid-4 { grid-template-columns: 1fr !important; }
-          .footer-links-col { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px; }
+        @media (max-width: 768px) {
+          .footer-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .footer-chevron { display: block !important; }
+          .footer-col { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
         }
       `}</style>
     </footer>
