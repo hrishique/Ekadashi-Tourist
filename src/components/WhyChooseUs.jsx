@@ -36,7 +36,7 @@ const WhyChooseUs = () => {
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Why Choose Us</h2>
           <p style={{ color: 'var(--gray-600)', maxWidth: '600px', margin: '0 auto' }}>
-            We've built our reputation on trust, safety, and transparency. Here's why 5,000+ travelers chose Hello Kanpur Travels.
+            We've built our reputation on trust, safety, and transparency. Here's why 5,000+ travelers chose Ekadashi Tourist Family.
           </p>
         </div>
 

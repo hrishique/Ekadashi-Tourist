@@ -1,16 +1,20 @@
 export const CONFIG = {
   business: {
-    name: "Hello Kanpur Travels",
-    phone: "+91-9876-543-210",
-    email: "support@hellokanpurtravels.in",
-    whatsapp: "919876543210",
-    address: "123 Main Street, Kanpur 208001, Uttar Pradesh, India",
-    gst: "18ABCDE1234F1Z5"
+    name: "Ekadashi Tourist Family",
+    phone: "+91-XXXX-XXX-XXX", // User to provide
+    email: "contact@ekadashitourist.com", // User to provide
+    whatsapp: "91XXXXXXXXXX", // User to provide (digits only with 91)
+    address: "Kanpur, Uttar Pradesh, India", // User to provide
+    gst: "GST-PENDING"
   },
   integrations: {
-    // Replace with real Zapier/Make.com webhook URLs
-    bookingWebhookUrl: "https://hooks.zapier.com/hooks/catch/XXXXXX/XXXXXX/",
-    newsletterWebhookUrl: "https://hooks.zapier.com/hooks/catch/XXXXXX/XXXXXX/",
-    contactWebhookUrl: "https://hooks.zapier.com/hooks/catch/XXXXXX/XXXXXX/"
+    // Replace these with your real Zapier/Make.com webhook URLs
+    // How to get these: 
+    // 1. Create account on Zapier.com or Make.com
+    // 2. Search for "Webhooks" as Trigger -> "Catch Hook"
+    // 3. Copy the URL provided and paste it below
+    bookingWebhookUrl: "REPLACE_WITH_YOUR_WEBHOOK_URL",
+    newsletterWebhookUrl: "REPLACE_WITH_YOUR_WEBHOOK_URL",
+    contactWebhookUrl: "REPLACE_WITH_YOUR_WEBHOOK_URL"
   }
 };

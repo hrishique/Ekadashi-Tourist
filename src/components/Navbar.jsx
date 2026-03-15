@@ -29,9 +29,9 @@ const Navbar = () => {
             justifyContent: 'center',
             fontWeight: 'bold',
             fontSize: '1.25rem'
-          }}>H</div>
+          }}>E</div>
           <div>
-            <h1 style={{ fontSize: '1.25rem', margin: 0 }}>Hello Kanpur Travels</h1>
+            <h1 style={{ fontSize: '1.25rem', margin: 0 }}>Ekadashi Tourist Family</h1>
             <p style={{ fontSize: '0.75rem', color: 'var(--gray-600)', margin: 0 }}>Premium Rental Services</p>
           </div>
         </div>

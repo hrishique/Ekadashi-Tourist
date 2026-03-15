@@ -34,7 +34,7 @@ const Hero = () => {
               maxWidth: '600px',
               fontFamily: 'Inter, sans-serif'
             }}>
-              Over 5,000 customers trust Hello Kanpur Travels for safe, comfortable journeys across India. No hidden charges. Professional drivers. 24/7 support.
+              Over 5,000 customers trust Ekadashi Tourist Family for safe, comfortable journeys across India. No hidden charges. Professional drivers. 24/7 support.
             </p>
 
             <div className="trust-badges" style={{ 

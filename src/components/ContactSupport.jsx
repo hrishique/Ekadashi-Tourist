@@ -248,9 +248,9 @@ export const Footer = () => {
           <div style={{ gridColumn: 'span 1' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
               <div style={{ width: '40px', height: '40px', backgroundColor: 'var(--primary)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontWeight: 800, fontSize: '1.5rem' }}>HK</span>
+                <span style={{ fontWeight: 800, fontSize: '1.5rem' }}>ET</span>
               </div>
-              <span style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.5px' }}>Hello Kanpur Travels</span>
+              <span style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.5px' }}>Ekadashi Tourist Family</span>
             </div>
             <p style={{ color: 'var(--gray-400)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '24px' }}>
               Premium Travel Rentals Across India. Experience the difference of professional service.
@@ -330,7 +330,7 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-          <p style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>© 2024 Hello Kanpur Travels. All rights reserved. | Sitemap</p>
+          <p style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>© 2024 Ekadashi Tourist Family. All rights reserved. | Sitemap</p>
           <div style={{ display: 'flex', gap: '24px' }}>
             <span style={{ color: 'var(--gray-500)', fontSize: '0.8125rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
               <ShieldCheck size={12} color="var(--primary)" /> SSL Secured

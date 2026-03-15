@@ -9,7 +9,7 @@ const SUGGESTIONS = ["Kanpur", "Lucknow", "Agra", "Delhi", "Jaipur", "Gwalior", 
 const PricingCalculator = () => {
   const [loading, setLoading] = useState(false);
   const [calcData, setCalcData] = useState(() => {
-    const saved = localStorage.getItem('hkt_calc_data');
+    const saved = localStorage.getItem('etf_calc_data');
     return saved ? JSON.parse(saved) : {
       tripType: 'Outstation',
       from: '',
@@ -23,7 +23,7 @@ const PricingCalculator = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    localStorage.setItem('hkt_calc_data', JSON.stringify(calcData));
+    localStorage.setItem('etf_calc_data', JSON.stringify(calcData));
   }, [calcData]);
 
   // Logic & Formulas
