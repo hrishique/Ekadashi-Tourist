@@ -1,100 +1,160 @@
 import React, { useState } from 'react';
-import { MessageCircle, Calculator, Phone, X, Send } from 'lucide-react';
+import { MessageCircle, Phone, Calculator, X, MessageSquare, ChevronUp } from 'lucide-react';
 
 const StickyWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [calcData, setCalcData] = useState({
-    from: '',
-    to: '',
-    passengers: 4
-  });
-
-  const getEstimate = () => {
-    const distance = 200; // Mock
-    const rate = calcData.passengers > 7 ? 20 : 12;
-    return distance * rate + 500;
-  };
 
   return (
-    <div style={{ position: 'fixed', bottom: '32px', right: '32px', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-end' }}>
-      
+    <div className="sticky-widget" style={{ 
+      position: 'fixed', 
+      bottom: '30px', 
+      right: '30px', 
+      zIndex: 3000,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      gap: '12px'
+    }}>
+      {/* Expanded Menu */}
       {isOpen && (
-        <div className="fade-in" style={{
-          backgroundColor: 'white',
-          width: '320px',
-          borderRadius: '24px',
-          boxShadow: 'var(--shadow-xl)',
-          border: '1px solid var(--gray-100)',
-          overflow: 'hidden',
+        <div className="fade-in" style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '10px',
           marginBottom: '8px'
         }}>
-          <div style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h4 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Calculator size={20} /> Quick Quote
-            </h4>
-            <button onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}>
-              <X size={20} />
-            </button>
-          </div>
-          
-          <div style={{ padding: '24px' }}>
-            <div className="form-group">
-              <label className="form-label" style={{ fontSize: '0.75rem' }}>From</label>
-              <input type="text" placeholder="Pickup City" className="form-input" style={{ padding: '8px 12px', fontSize: '0.875rem' }} 
-                value={calcData.from} onChange={e => setCalcData({...calcData, from: e.target.value})} />
-            </div>
-            <div className="form-group">
-              <label className="form-label" style={{ fontSize: '0.75rem' }}>To</label>
-              <input type="text" placeholder="Destination City" className="form-input" style={{ padding: '8px 12px', fontSize: '0.875rem' }}
-                value={calcData.to} onChange={e => setCalcData({...calcData, to: e.target.value})} />
-            </div>
-            
-            <div style={{ backgroundColor: 'var(--gray-50)', padding: '16px', borderRadius: '12px', textAlign: 'center' }}>
-              <p style={{ fontSize: '0.75rem', color: 'var(--gray-500)', marginBottom: '4px' }}>ESTIMATED PRICE</p>
-              <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)', margin: 0 }}>₹{getEstimate()}</p>
-            </div>
-            
-            <button className="btn btn-primary" style={{ width: '100%', marginTop: '20px', gap: '8px', fontSize: '0.875rem' }}
-              onClick={() => window.location.href = '#booking'}>
-              Proceed to Booking
-            </button>
-          </div>
+          <button 
+            onClick={() => window.location.href = '#calculator'}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: 'white',
+              border: 'none',
+              borderRadius: '30px',
+              boxShadow: 'var(--shadow-lg)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontWeight: 700,
+              fontSize: '0.875rem',
+              color: 'var(--gray-900)',
+              cursor: 'pointer',
+              transition: 'var(--transition-normal)'
+            }}
+            className="widget-option"
+          >
+            <Calculator size={18} color="var(--primary)" /> 
+            <span>Price Calculator</span>
+          </button>
+
+          <button 
+            onClick={() => window.location.href = 'tel:+919876543210'}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: 'white',
+              border: 'none',
+              borderRadius: '30px',
+              boxShadow: 'var(--shadow-lg)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontWeight: 700,
+              fontSize: '0.875rem',
+              color: 'var(--gray-900)',
+              cursor: 'pointer',
+              transition: 'var(--transition-normal)'
+            }}
+            className="widget-option"
+          >
+            <Phone size={18} color="var(--secondary)" /> 
+            <span>Quick Call</span>
+          </button>
+
+          <button 
+            onClick={() => window.location.href = 'https://wa.me/919876543210'}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: '#25D366',
+              border: 'none',
+              borderRadius: '30px',
+              boxShadow: 'var(--shadow-lg)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontWeight: 700,
+              fontSize: '0.875rem',
+              color: 'white',
+              cursor: 'pointer',
+              transition: 'var(--transition-normal)'
+            }}
+            className="widget-option"
+          >
+            <MessageSquare size={18} /> 
+            <span>WhatsApp (2 min)</span>
+          </button>
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        <button onClick={() => setIsOpen(!isOpen)} style={{
-          width: '60px',
-          height: '60px',
+      {/* Main Toggle Button */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          width: '64px',
+          height: '64px',
           borderRadius: '50%',
-          backgroundColor: 'var(--accent)',
+          backgroundColor: isOpen ? 'var(--gray-900)' : 'var(--primary)',
           color: 'white',
           border: 'none',
-          boxShadow: 'var(--shadow-lg)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'var(--transition-normal)'
-        }}>
-          {isOpen ? <X size={28} /> : <Calculator size={28} />}
-        </button>
+          transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          position: 'relative'
+        }}
+        className="main-widget-btn"
+      >
+        {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
+        {!isOpen && (
+          <div style={{
+            position: 'absolute',
+            top: '-5px',
+            right: '-5px',
+            backgroundColor: 'var(--accent)',
+            width: '20px',
+            height: '20px',
+            borderRadius: '50%',
+            border: '3px solid white'
+          }}></div>
+        )}
+      </button>
 
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          backgroundColor: '#25D366',
-          color: 'white',
-          boxShadow: 'var(--shadow-lg)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'var(--transition-normal)'
-        }}>
-          <MessageCircle size={28} />
-        </a>
+      {/* Mobile Top Widget (Visible on small screens) */}
+      <div className="mobile-top-bar" style={{
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        display: 'none',
+        gap: '12px',
+        zIndex: 3000
+      }}>
+        <button onClick={() => window.location.href = 'tel:+919876543210'} style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'var(--primary)', color: 'white', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Phone size={20} /></button>
+        <button onClick={() => window.location.href = 'https://wa.me/919876543210'} style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#25D366', color: 'white', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><MessageSquare size={20} /></button>
       </div>
+
+      <style>{`
+        .widget-option:hover {
+          transform: scale(1.05) translateX(-5px);
+          background-color: var(--gray-50);
+        }
+        .main-widget-btn:hover {
+          transform: scale(1.1) rotate(5deg);
+        }
+        @media (max-width: 768px) {
+          .sticky-widget { bottom: 20px; right: 20px; }
+          .mobile-top-bar { display: flex !important; }
+        }
+      `}</style>
     </div>
   );
 };
