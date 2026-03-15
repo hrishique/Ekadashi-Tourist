@@ -1,167 +1,259 @@
-import React, { useState } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Star, ChevronLeft, ChevronRight, CheckCircle2, Quote } from 'lucide-react';
 
-const TestimonialCard = ({ quote, name, location, trip, date, rating }) => (
-  <div style={{
-    backgroundColor: 'white',
-    padding: '40px',
-    borderRadius: '24px',
-    boxShadow: 'var(--shadow-lg)',
-    border: '1px solid var(--gray-100)',
-    position: 'relative',
-    maxWidth: '600px',
-    margin: '0 auto'
-  }}>
-    <Quote size={48} style={{ position: 'absolute', top: '20px', left: '20px', color: 'var(--gray-100)', zIndex: 0 }} />
-    <div style={{ position: 'relative', zIndex: 1 }}>
-      <div style={{ display: 'flex', gap: '4px', marginBottom: '24px', color: 'var(--accent)' }}>
-        {[...Array(rating)].map((_, i) => <Star key={i} size={20} fill="var(--accent)" />)}
-      </div>
-      <p style={{ fontSize: '1.25rem', lineHeight: 1.6, color: 'var(--gray-800)', marginBottom: '32px', fontStyle: 'italic' }}>
-        "{quote}"
-      </p>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{
-          width: '56px',
-          height: '56px',
-          borderRadius: '50%',
-          backgroundColor: 'var(--primary)',
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 700,
-          fontSize: '1.25rem'
-        }}>
-          {name.charAt(0)}
-        </div>
-        <div style={{ textAlign: 'left' }}>
-          <h4 style={{ fontSize: '1.125rem', marginBottom: '2px' }}>{name}</h4>
-          <p style={{ color: 'var(--gray-500)', fontSize: '0.875rem' }}>{location} • {trip} • {date}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+const TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Priya Sharma",
+    location: "Delhi",
+    rating: 5,
+    text: "Best travel experience! Driver was professional, car was spotless, and pricing was exactly as quoted. Definitely booking again!",
+    tripType: "Manali Family Trip",
+    date: "March 2024",
+    verified: true
+  },
+  {
+    id: 2,
+    name: "Rajesh Kumar",
+    location: "Lucknow",
+    rating: 5,
+    text: "Amazing service for our corporate trip. 25 colleagues, zero complaints. Highly recommended!",
+    tripType: "Corporate Team Outing",
+    date: "February 2024",
+    verified: true
+  },
+  {
+    id: 3,
+    name: "Ankit Patel",
+    location: "Mumbai",
+    rating: 5,
+    text: "Smooth booking process and very reliable. The driver was familiar with all the shortcuts and scenic routes. 10/10!",
+    tripType: "Chardham Pilgrimage",
+    date: "January 2024",
+    verified: true
+  },
+  {
+    id: 4,
+    name: "Neha Gupta",
+    location: "Agra",
+    rating: 5,
+    text: "Saved so much time and stress! Booking was quick, price was fair, and driver was excellent. No regrets!",
+    tripType: "Local City Tour",
+    date: "March 2024",
+    verified: true
+  },
+  {
+    id: 5,
+    name: "Rahul Singh",
+    location: "Kanpur",
+    rating: 5,
+    text: "Booked 15 cars for corporate event. Flawless execution, all drivers professional. Best value in Kanpur.",
+    tripType: "Team Building Event",
+    date: "December 2023",
+    verified: true
+  }
+];
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const reviews = [
-    {
-      quote: "Best travel experience! Driver was professional, car was spotless, and pricing was exactly as quoted. Will definitely book again for my next family trip.",
-      name: "Priya Sharma",
-      location: "Delhi",
-      trip: "Manali Family Trip",
-      date: "March 2024",
-      rating: 5
-    },
-    {
-      quote: "The 14-seater Tempo Traveller was very comfortable for our corporate group. Highly recommend Hello Kanpur Travels for their punctuality and clean vehicles.",
-      name: "Rahul Mehra",
-      location: "Kanpur",
-      trip: "Corporate Retreat",
-      date: "February 2024",
-      rating: 5
-    },
-    {
-      quote: "I was worried about hidden costs, but the pricing was transparent from start to finish. The driver was very helpful with local suggestions as well.",
-      name: "Ananya Iyer",
-      location: "Mumbai",
-      trip: "Lucknow Local",
-      date: "January 2024",
-      rating: 5
-    }
-  ];
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef(null);
 
-  const next = () => setCurrentIndex((currentIndex + 1) % reviews.length);
-  const prev = () => setCurrentIndex((currentIndex - 1 + reviews.length) % reviews.length);
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+  }, []);
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  };
+
+  useEffect(() => {
+    if (!isPaused) {
+      timerRef.current = setInterval(nextSlide, 5000);
+    }
+    return () => clearInterval(timerRef.current);
+  }, [isPaused, nextSlide]);
 
   return (
-    <section id="testimonials" className="section" style={{ backgroundColor: 'var(--white)', overflow: 'hidden' }}>
+    <section id="reviews" className="section" style={{ backgroundColor: 'var(--gray-50)', padding: '80px 0' }}>
       <div className="container">
+        {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginBottom: '24px', flexWrap: 'wrap' }}>
-            <div style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '4px' }}>4.7/5</p>
-              <p style={{ fontSize: '0.75rem', color: 'var(--gray-500)', fontWeight: 600 }}>STARS RATED</p>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', gap: '2px' }}>
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={20} fill="#FFD700" color="#FFD700" />
+              ))}
             </div>
-            <div style={{ width: '1px', height: '40px', backgroundColor: 'var(--gray-200)' }}></div>
-            <div style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '4px' }}>5,000+</p>
-              <p style={{ fontSize: '0.75rem', color: 'var(--gray-500)', fontWeight: 600 }}>HAPPY CUSTOMERS</p>
-            </div>
-            <div style={{ width: '1px', height: '40px', backgroundColor: 'var(--gray-200)' }}></div>
-            <div style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '4px' }}>2,000+</p>
-              <p style={{ fontSize: '0.75rem', color: 'var(--gray-500)', fontWeight: 600 }}>TRIPS DONE</p>
-            </div>
+            <span style={{ fontWeight: 700, fontSize: '1.25rem' }}>4.7/5 Stars</span>
+            <span style={{ color: 'var(--gray-500)' }}>(250+ Reviews)</span>
           </div>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>What Our Customers Say</h2>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '12px' }}>What Our Customers Say</h2>
+          <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem' }}>5,000+ Happy Customers & Growing</p>
         </div>
 
-        <div style={{ position: 'relative', maxWidth: '800px', margin: '0 auto' }}>
-          <TestimonialCard {...reviews[currentIndex]} />
-          
-          <button onClick={prev} style={{
+        {/* Carousel Container */}
+        <div 
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          style={{ 
+            maxWidth: '900px', 
+            margin: '0 auto', 
+            position: 'relative',
+            padding: '0 60px'
+          }}
+        >
+          {/* Navigation Arrows */}
+          <button onClick={prevSlide} className="carousel-btn prev" style={{
             position: 'absolute',
-            left: '-20px',
+            left: 0,
             top: '50%',
             transform: 'translateY(-50%)',
+            width: '44px',
+            height: '44px',
+            borderRadius: '50%',
             backgroundColor: 'white',
             border: 'none',
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            boxShadow: 'var(--shadow-md)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--primary)',
-            zIndex: 10
+            color: 'var(--gray-900)',
+            zIndex: 10,
+            transition: 'all 0.3s ease'
           }}>
             <ChevronLeft size={24} />
           </button>
-          
-          <button onClick={next} style={{
+
+          <button onClick={nextSlide} className="carousel-btn next" style={{
             position: 'absolute',
-            right: '-20px',
+            right: 0,
             top: '50%',
             transform: 'translateY(-50%)',
+            width: '44px',
+            height: '44px',
+            borderRadius: '50%',
             backgroundColor: 'white',
             border: 'none',
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            boxShadow: 'var(--shadow-md)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--primary)',
-            zIndex: 10
+            color: 'var(--gray-900)',
+            zIndex: 10,
+            transition: 'all 0.3s ease'
           }}>
             <ChevronRight size={24} />
           </button>
-        </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '40px' }}>
-          {reviews.map((_, i) => (
-            <div key={i} onClick={() => setCurrentIndex(i)} style={{
-              width: currentIndex === i ? '24px' : '10px',
-              height: '10px',
-              borderRadius: '5px',
-              backgroundColor: currentIndex === i ? 'var(--primary)' : 'var(--gray-300)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}></div>
-          ))}
+          {/* Card Wrapper */}
+          <div style={{ overflow: 'hidden', borderRadius: '24px' }}>
+            <div style={{
+              display: 'flex',
+              transform: `translateX(-${currentIndex * 100}%)`,
+              transition: 'transform 0.5s ease-in-out'
+            }}>
+              {TESTIMONIALS.map((t) => (
+                <div key={t.id} style={{ 
+                  flex: '0 0 100%', 
+                  padding: '10px' 
+                }}>
+                  <div style={{
+                    backgroundColor: 'white',
+                    padding: '40px',
+                    borderRadius: '24px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                    textAlign: 'center',
+                    minHeight: '280px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    border: '1px solid var(--gray-100)'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '2px', marginBottom: '20px' }}>
+                      {[...Array(t.rating)].map((_, i) => (
+                        <Star key={i} size={18} fill="#FFD700" color="#FFD700" />
+                      ))}
+                    </div>
+
+                    <p style={{ 
+                      fontSize: '1.125rem', 
+                      lineHeight: 1.6, 
+                      color: '#333', 
+                      fontStyle: 'italic',
+                      marginBottom: '24px',
+                      maxWidth: '600px',
+                      marginInline: 'auto'
+                    }}>
+                      "{t.text}"
+                    </p>
+
+                    <div style={{ borderTop: '1px solid var(--gray-100)', paddingTop: '20px' }}>
+                      <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#2c2c2c', marginBottom: '4px' }}>
+                        - {t.name}, {t.location}
+                      </h4>
+                      <p style={{ fontSize: '0.875rem', color: '#666', marginBottom: '8px' }}>
+                        Trip: {t.tripType} • {t.date}
+                      </p>
+                      {t.verified && (
+                        <div style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center', 
+                          gap: '4px', 
+                          color: '#2196F3',
+                          fontSize: '0.75rem',
+                          fontWeight: 600
+                        }}>
+                          <CheckCircle2 size={14} />
+                          <span>Verified Booking</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dots Navigation */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: '8px', 
+            marginTop: '32px' 
+          }}>
+            {TESTIMONIALS.map((_, i) => (
+              <button 
+                key={i} 
+                onClick={() => setCurrentIndex(i)}
+                style={{
+                  width: '10px',
+                  height: '10px',
+                  borderRadius: '50%',
+                  backgroundColor: currentIndex === i ? 'var(--primary)' : 'var(--gray-300)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  transition: 'background-color 0.3s ease'
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
       <style>{`
+        .carousel-btn:hover {
+          transform: translateY(-50%) scale(1.1) !important;
+          color: var(--primary) !important;
+        }
         @media (max-width: 768px) {
-          button { display: none !important; }
+          .carousel-wrapper { padding: 0 10px !important; }
+          .carousel-btn { display: none !important; }
+          .section { padding: 48px 0 !important; }
         }
       `}</style>
     </section>
