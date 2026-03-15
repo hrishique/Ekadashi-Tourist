@@ -5,6 +5,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import VehicleShowcase from './components/VehicleShowcase';
 import Testimonials from './components/Testimonials';
 import BookingForm from './components/BookingForm';
+import PricingCalculator from './components/PricingCalculator';
 import FAQ from './components/FAQ';
 import ContactSupport, { Footer } from './components/ContactSupport';
 import StickyWidget from './components/StickyWidget';
@@ -19,6 +20,7 @@ function App() {
         <WhyChooseUs />
         <VehicleShowcase />
         <Testimonials />
+        <PricingCalculator />
         <BookingForm />
         <FAQ />
         <ContactSupport />
