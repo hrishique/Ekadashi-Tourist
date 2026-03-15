@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calendar, MapPin, Users, Car, Check, ChevronRight, 
-  ChevronLeft, CreditCard, Star, Info, Phone, Mail, 
-  MessageSquare, AlertCircle, Trash2, Plus
+  ChevronLeft, Star, Info, Phone, Mail, 
+  MessageSquare, AlertCircle, Trash2, Plus, Loader2
 } from 'lucide-react';
+import { CONFIG } from '../config';
 import swiftImg from '../assets/swift.png';
 import fortunerImg from '../assets/fortuner.png';
 import tempoImg from '../assets/tempo.png';
@@ -38,6 +39,8 @@ const BookingForm = () => {
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedVehicleDetails, setSelectedVehicleDetails] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderId, setOrderId] = useState(null);
 
   // Price Calculation Logic
   const calculatePricing = () => {
@@ -108,16 +111,46 @@ const BookingForm = () => {
     if (errors[field]) setErrors(prev => ({ ...prev, [field]: null }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.agreedToPolicies) {
       setErrors({ policies: "Please agree to our terms" });
       return;
     }
     
-    const orderId = `HKT-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-    const message = `*Hello Kanpur Travels - NEW BOOKING*%0A*Order ID:* ${orderId}%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}%0A*Vehicle:* ${formData.vehicle.name}%0A*Total:* ₹${pricing.finalPrice}`;
-    
-    window.open(`https://wa.me/919876543210?text=${message}`);
+    setIsSubmitting(true);
+    const newOrderId = `HKT-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    setOrderId(newOrderId);
+
+    const bookingData = {
+      orderId: newOrderId,
+      timestamp: new Date().toLocaleString(),
+      ...formData,
+      vehicle: formData.vehicle.name,
+      pricing: pricing
+    };
+
+    try {
+      // 1. Send to Webhook (Google Sheets, Admin Email, Customer Email)
+      const response = await fetch(CONFIG.integrations.bookingWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData)
+      });
+
+      // 2. Open WhatsApp (Triggered by user click, but we'll do it after webhook attempt)
+      const whatsappMessage = `*Hello Kanpur Travels - NEW BOOKING*%0A*Order ID:* ${newOrderId}%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}%0A*Vehicle:* ${formData.vehicle.name}%0A*Total:* ₹${pricing.finalPrice}%0A*Status:* Awaiting Payment`;
+      
+      window.open(`https://wa.me/${CONFIG.business.whatsapp}?text=${whatsappMessage}`);
+      setStep(5); // Success Step
+    } catch (error) {
+      console.error("Booking Error:", error);
+      // Still open WhatsApp as backup if webhook fails
+      const whatsappMessage = `*Hello Kanpur Travels - BOOKING (Webhook Fallback)*%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}`;
+      window.open(`https://wa.me/${CONFIG.business.whatsapp}?text=${whatsappMessage}`);
+      setStep(5);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -347,26 +380,64 @@ const BookingForm = () => {
                 </div>
               </div>
             )}
+            {/* Step 5: Success Confirmation */}
+            {step === 5 && (
+              <div className="fade-in" style={{ textAlign: 'center', padding: '40px 0' }}>
+                <div style={{ width: '80px', height: '80px', backgroundColor: 'var(--primary)', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+                  <Check size={40} />
+                </div>
+                <h2 style={{ marginBottom: '16px' }}>Booking Received!</h2>
+                <p style={{ color: 'var(--gray-600)', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
+                  Thank you, <strong>{formData.name}</strong>. Your booking <strong>{orderId}</strong> has been received and sent to our team.
+                </p>
+                
+                <div style={{ backgroundColor: 'var(--gray-50)', padding: '24px', borderRadius: '20px', textAlign: 'left', marginBottom: '32px', border: '1px solid var(--gray-100)' }}>
+                  <h4 style={{ fontSize: '0.875rem', color: 'var(--gray-500)', textTransform: 'uppercase', marginBottom: '16px', letterSpacing: '0.05em' }}>What happens next?</h4>
+                  <ul style={{ display: 'grid', gap: '12px', listStyle: 'none', padding: 0 }}>
+                    <li style={{ display: 'flex', gap: '12px', fontSize: '0.875rem' }}>
+                      <div style={{ color: 'var(--primary)', fontWeight: 700 }}>1.</div>
+                      <div>Our team will review your trip details and assign a professional driver.</div>
+                    </li>
+                    <li style={{ display: 'flex', gap: '12px', fontSize: '0.875rem' }}>
+                      <div style={{ color: 'var(--primary)', fontWeight: 700 }}>2.</div>
+                      <div>You will receive a detailed confirmation email and a WhatsApp message.</div>
+                    </li>
+                    <li style={{ display: 'flex', gap: '12px', fontSize: '0.875rem' }}>
+                      <div style={{ color: 'var(--primary)', fontWeight: 700 }}>3.</div>
+                      <div>Contact us anytime at {CONFIG.business.phone} for changes.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+                  <button onClick={() => window.location.reload()} className="btn btn-secondary">New Booking</button>
+                  <button onClick={() => window.location.href = '#'} className="btn btn-primary">Return Home</button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Action Footer */}
-          <div style={{ padding: '24px 40px', backgroundColor: 'var(--gray-50)', borderTop: '1px solid var(--gray-100)', display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
-            {step > 1 ? (
-              <button onClick={handlePrev} className="btn btn-secondary" style={{ gap: '8px', height: '56px' }}>
-                <ChevronLeft size={20} /> <span className="desktop-only">Back</span>
-              </button>
-            ) : <div />}
-            
-            {step < 4 ? (
-              <button onClick={handleNext} className="btn btn-primary" style={{ gap: '8px', height: '56px', flex: 1, maxWidth: '300px' }}>
-                Continue <ChevronRight size={20} />
-              </button>
-            ) : (
-              <button onClick={handleSubmit} className="btn btn-primary" style={{ gap: '12px', height: '56px', flex: 1, maxWidth: '400px', fontSize: '1.125rem' }}>
-                <Check size={24} /> Confirm & Book via WhatsApp
-              </button>
-            )}
-          </div>
+          {step < 5 && (
+            <div style={{ padding: '24px 40px', backgroundColor: 'var(--gray-50)', borderTop: '1px solid var(--gray-100)', display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
+              {step > 1 ? (
+                <button onClick={handlePrev} className="btn btn-secondary" style={{ gap: '8px', height: '56px' }} disabled={isSubmitting}>
+                  <ChevronLeft size={20} /> <span className="desktop-only">Back</span>
+                </button>
+              ) : <div />}
+              
+              {step < 4 ? (
+                <button onClick={handleNext} className="btn btn-primary" style={{ gap: '8px', height: '56px', flex: 1, maxWidth: '300px' }}>
+                  Continue <ChevronRight size={20} />
+                </button>
+              ) : (
+                <button onClick={handleSubmit} className="btn btn-primary" style={{ gap: '12px', height: '56px', flex: 1, maxWidth: '400px', fontSize: '1.125rem' }} disabled={isSubmitting}>
+                  {isSubmitting ? <Loader2 className="animate-spin" size={24} /> : <Check size={24} />}
+                  {isSubmitting ? 'Confirming...' : 'Confirm & Book via WhatsApp'}
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

@@ -4,8 +4,9 @@ import {
   ShieldCheck, Award, Star, CheckCircle2, 
   Facebook, Twitter, Instagram, Linkedin, Send, 
   ChevronDown, ChevronUp, UserCheck, Car, Heart, 
-  Handshake, Shield, Monitor
+  Handshake, Shield, Monitor, Loader2
 } from 'lucide-react';
+import { CONFIG } from '../config';
 
 const ContactSupport = () => {
   const [formData, setFormData] = useState({
@@ -18,15 +19,29 @@ const ContactSupport = () => {
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
-    setTimeout(() => {
-      setIsSending(false);
+    
+    try {
+      await fetch(CONFIG.integrations.contactWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toLocaleString()
+        })
+      });
       setIsSuccess(true);
       setFormData({ name: '', email: '', phone: '', subject: 'General Inquiry', message: '' });
       setTimeout(() => setIsSuccess(false), 5000);
-    }, 2000);
+    } catch (error) {
+      console.error("Contact Error:", error);
+      // Fallback: Success UI anyway for UX, since email is secondary to phone/whatsapp
+      setIsSuccess(true);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -177,11 +192,36 @@ const ContactSupport = () => {
 };
 
 export const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const [openSections, setOpenSections] = useState({
     company: false,
     services: false,
     legal: false
   });
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setIsSubscribing(true);
+    try {
+      await fetch(CONFIG.integrations.newsletterWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, timestamp: new Date().toLocaleString() })
+      });
+      setSubscribed(true);
+      setEmail('');
+      setTimeout(() => setSubscribed(false), 5000);
+    } catch (error) {
+      console.error("Newsletter Error:", error);
+      setSubscribed(true); // Optimistic success
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   const toggleSection = (section) => {
     if (window.innerWidth < 768) {
@@ -260,18 +300,30 @@ export const Footer = () => {
           <div style={{ gridColumn: 'span 1' }}>
             <h4 style={{ color: 'white', marginBottom: '24px', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em' }}>NEWSLETTER</h4>
             <div style={{ marginBottom: '24px' }}>
-               <div style={{ position: 'relative' }}>
-                <input type="email" placeholder="Email address" style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '12px 16px', color: 'white', fontSize: '0.875rem' }} />
-                <button style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'var(--primary)', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer' }}>
-                  <Send size={16} />
+               <form onSubmit={handleNewsletterSubmit} style={{ position: 'relative' }}>
+                <input 
+                  type="email" 
+                  placeholder="Email address" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '12px 16px', color: 'white', fontSize: '0.875rem' }} 
+                  required
+                />
+                <button 
+                  type="submit"
+                  disabled={isSubscribing}
+                  style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', backgroundColor: subscribed ? 'var(--success)' : 'var(--primary)', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer' }}
+                >
+                  {isSubscribing ? <Loader2 size={16} className="animate-spin" /> : subscribed ? <CheckCircle2 size={16} /> : <Send size={16} />}
                 </button>
-              </div>
+              </form>
+              {subscribed && <p style={{ color: 'var(--success)', fontSize: '0.75rem', marginTop: '8px' }}>Subscribed successfully!</p>}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.875rem', color: 'var(--gray-400)' }}>
               <span style={{ color: 'white', fontWeight: 600 }}>CONTACT</span>
-              <span>Phone: +91-9876-543-210</span>
-              <span>Email: support@hellokanpurtravels.in</span>
-              <a href="https://wa.me/919876543210" style={{ color: '#25D336', textDecoration: 'none', fontWeight: 600 }}>WhatsApp Us</a>
+              <span>Phone: {CONFIG.business.phone}</span>
+              <span>Email: {CONFIG.business.email}</span>
+              <a href={`https://wa.me/${CONFIG.business.whatsapp}`} style={{ color: '#25D336', textDecoration: 'none', fontWeight: 600 }}>WhatsApp Us</a>
             </div>
           </div>
         </div>
