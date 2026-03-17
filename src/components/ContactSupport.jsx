@@ -6,9 +6,12 @@ import {
   ChevronDown, ChevronUp, UserCheck, Car, Heart, 
   Handshake, Shield, Monitor, Loader2
 } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CONFIG } from '../config';
 
 const ContactSupport = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,8 +51,8 @@ const ContactSupport = () => {
     <section id="contact" className="section" style={{ backgroundColor: 'white' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Need Help? We're Here 24/7</h2>
-          <p style={{ color: 'var(--gray-600)' }}>Choose your preferred way to reach us.</p>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{t('contact.title')}</h2>
+          <p style={{ color: 'var(--gray-600)' }}>{t('contact.subtitle')}</p>
         </div>
 
         <div className="grid grid-2" style={{ gap: '60px', alignItems: 'start' }}>
@@ -59,20 +62,20 @@ const ContactSupport = () => {
               <div style={{ width: '48px', height: '48px', backgroundColor: 'var(--primary)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: 'white' }}>
                 <Phone size={24} />
               </div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>Phone Support</h3>
-              <p style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--gray-900)', marginBottom: '4px' }}>+91-9876-543-210</p>
-              <p style={{ fontSize: '0.875rem', color: 'var(--gray-500)', marginBottom: '20px' }}>Available 24/7 for urgent bookings</p>
-              <button className="btn btn-primary" style={{ width: '100%' }} onClick={() => window.location.href = 'tel:+919876543210'}>CALL US NOW</button>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>{t('contact.phone_title')}</h3>
+              <p style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--gray-900)', marginBottom: '4px' }}>{CONFIG.business.phone}</p>
+              <p style={{ fontSize: '0.875rem', color: 'var(--gray-500)', marginBottom: '20px' }}>{t('contact.phone_sub')}</p>
+              <button className="btn btn-primary" style={{ width: '100%' }} onClick={() => window.location.href = `tel:${CONFIG.business.phone}`}>{t('contact.call_now')}</button>
             </div>
 
             <div style={{ padding: '32px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', border: '1px solid var(--gray-100)' }}>
               <div style={{ width: '48px', height: '48px', backgroundColor: '#25D336', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: 'white' }}>
                 <MessageSquare size={24} />
               </div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>WhatsApp Chat</h3>
-              <p style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--gray-900)', marginBottom: '4px' }}>+91-9876-543-210</p>
-              <p style={{ fontSize: '0.875rem', color: 'var(--gray-500)', marginBottom: '20px' }}>Avg. response time: 2-5 minutes</p>
-              <button className="btn btn-primary" style={{ width: '100%', backgroundColor: '#25D336', borderColor: '#25D336' }} onClick={() => window.location.href = 'https://wa.me/919876543210'}>MESSAGE US</button>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>{t('contact.whatsapp_title')}</h3>
+              <p style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--gray-900)', marginBottom: '4px' }}>{CONFIG.business.phone}</p>
+              <p style={{ fontSize: '0.875rem', color: 'var(--gray-500)', marginBottom: '20px' }}>{t('contact.whatsapp_sub')}</p>
+              <button className="btn btn-primary" style={{ width: '100%', backgroundColor: '#25D336', borderColor: '#25D336' }} onClick={() => window.location.href = `https://wa.me/${CONFIG.business.whatsapp}`}>{t('contact.msg_us')}</button>
             </div>
 
             <div style={{ gridColumn: '1 / -1', padding: '32px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', border: '1px solid var(--gray-100)', display: 'flex', gap: '24px', alignItems: 'center' }}>
@@ -80,32 +83,32 @@ const ContactSupport = () => {
                 <MapPin size={24} />
               </div>
               <div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '4px' }}>Office Address</h3>
-                <p style={{ color: 'var(--gray-600)', fontSize: '0.9375rem' }}>123 Main Street, Kanpur 208001, Uttar Pradesh, India</p>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '4px' }}>{t('contact.office_title')}</h3>
+                <p style={{ color: 'var(--gray-600)', fontSize: '0.9375rem' }}>{CONFIG.business.address}</p>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
           <div style={{ padding: '40px', backgroundColor: 'white', borderRadius: '32px', border: '1px solid var(--gray-100)', boxShadow: 'var(--shadow-xl)' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '24px' }}>Send Us a Message</h3>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '24px' }}>{t('contact.form_title')}</h3>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '20px' }}>
               <div className="grid grid-2">
                 <div className="form-group">
-                  <label className="form-label">Name</label>
-                  <input type="text" className="form-input" placeholder="Your Name" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                  <label className="form-label">{t('contact.name')}</label>
+                  <input type="text" className="form-input" placeholder={t('contact.placeholder_name')} required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Phone</label>
-                  <input type="tel" className="form-input" placeholder="Your Phone" required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
+                  <label className="form-label">{t('contact.phone')}</label>
+                  <input type="tel" className="form-input" placeholder={t('contact.placeholder_phone')} required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
                 </div>
               </div>
               <div className="form-group">
-                <label className="form-label">Email</label>
+                <label className="form-label">{t('contact.email')}</label>
                 <input type="email" className="form-input" placeholder="your@email.com" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
               </div>
               <div className="form-group">
-                <label className="form-label">Subject</label>
+                <label className="form-label">{t('contact.subject')}</label>
                 <select className="form-input" value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})}>
                   <option>General Inquiry</option>
                   <option>Booking Issue</option>
@@ -115,13 +118,13 @@ const ContactSupport = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label className="form-label">Message</label>
-                <textarea className="form-input" rows="4" placeholder="How can we help you?" required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
+                <label className="form-label">{t('contact.message')}</label>
+                <textarea className="form-input" rows="4" placeholder={t('contact.placeholder_msg')} required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
               </div>
               <button type="submit" className="btn btn-primary" style={{ width: '100%', height: '56px' }} disabled={isSending}>
-                {isSending ? 'SENDING...' : isSuccess ? 'MESSAGE SENT! ✓' : 'SEND MESSAGE'}
+                {isSending ? t('contact.sending') : isSuccess ? t('contact.sent') : t('contact.send')}
               </button>
-              {isSuccess && <p style={{ color: 'var(--success)', textAlign: 'center', fontSize: '0.875rem', fontWeight: 600 }}>We'll reply to your email within 4 hours.</p>}
+              {isSuccess && <p style={{ color: 'var(--success)', textAlign: 'center', fontSize: '0.875rem', fontWeight: 600 }}>{t('contact.footer_support')}</p>}
             </form>
           </div>
         </div>
@@ -139,7 +142,7 @@ const ContactSupport = () => {
             <div style={{ textAlign: 'center' }}>
               <Award size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
               <h5 style={{ fontSize: '1rem', marginBottom: '4px' }}>📜 GST Registered</h5>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>18ABCDE1234F1Z5</p>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}>{CONFIG.business.gst}</p>
             </div>
             <div style={{ textAlign: 'center' }}>
               <Heart size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
@@ -192,6 +195,7 @@ const ContactSupport = () => {
 };
 
 export const Footer = () => {
+  const { pathname } = useLocation();
   const [email, setEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
@@ -200,6 +204,32 @@ export const Footer = () => {
     services: false,
     legal: false
   });
+
+  const handleLinkClick = (path) => {
+    if (pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const FooterLink = ({ to, children }) => (
+    <Link 
+      to={to} 
+      onClick={() => handleLinkClick(to)}
+      className="footer-link-premium"
+      style={{ 
+        color: 'var(--gray-400)', 
+        textDecoration: 'none', 
+        fontSize: '0.9375rem', 
+        transition: 'all 0.3s ease',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '8px',
+        position: 'relative'
+      }}
+    >
+      {children}
+    </Link>
+  );
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
@@ -229,11 +259,35 @@ export const Footer = () => {
     }
   };
 
-  const footerLinksArr = {
-    company: ['About Us', 'Contact', 'Blog', 'Careers'],
-    services: ['Vehicles', 'Tour Packages', 'Pricing', 'Reviews'],
-    legal: ['Privacy Policy', 'Terms & Conditions', 'Cancellation Policy', 'Refund Policy']
-  };
+  const footerLinksArr = [
+    { 
+      title: 'Company', 
+      links: [
+        { name: 'About Us', path: '/about' },
+        { name: 'Contact Us', path: '/contact' },
+        { name: 'Car Fleet', path: '/taxi-booking' },
+        { name: 'Bus Fleet', path: '/bus-booking' }
+      ]
+    },
+    { 
+      title: 'Services', 
+      links: [
+        { name: 'Local Taxi', path: '/taxi-booking' },
+        { name: 'Outstation', path: '/taxi-booking' },
+        { name: 'Bus Rental', path: '/bus-booking' },
+        { name: 'Group Tours', path: '/bus-booking' }
+      ]
+    },
+    { 
+      title: 'Legal', 
+      links: [
+        { name: 'Terms of Use', path: '/terms' },
+        { name: 'Privacy Policy', path: '/privacy' },
+        { name: 'Refund Policy', path: '/refund-policy' },
+        { name: 'Cancel Policy', path: '/cancellation-policy' }
+      ]
+    }
+  ];
 
   return (
     <footer style={{ backgroundColor: 'var(--gray-900)', color: 'white', paddingTop: '80px', paddingBottom: '40px' }}>
@@ -256,18 +310,18 @@ export const Footer = () => {
               Premium Travel Rentals Across India. Experience the difference of professional service.
             </p>
             <div style={{ display: 'flex', gap: '16px' }}>
-              <a href="#" style={{ color: 'white' }}><Facebook size={20} /></a>
-              <a href="#" style={{ color: 'white' }}><Twitter size={20} /></a>
-              <a href="#" style={{ color: 'white' }}><Instagram size={20} /></a>
-              <a href="#" style={{ color: 'white' }}><Linkedin size={20} /></a>
+              <a href={CONFIG.business.social.facebook} style={{ color: 'white' }}><Facebook size={20} /></a>
+              <a href={CONFIG.business.social.twitter} style={{ color: 'white' }}><Twitter size={20} /></a>
+              <a href={CONFIG.business.social.instagram} style={{ color: 'white' }}><Instagram size={20} /></a>
+              <a href={CONFIG.business.social.linkedin} style={{ color: 'white' }}><Linkedin size={20} /></a>
             </div>
           </div>
 
           {/* Collapsible Sections */}
-          {Object.entries(footerLinksArr).map(([title, links]) => (
-            <div key={title} className="footer-col" style={{ gridColumn: 'span 1' }}>
+          {footerLinksArr.map((section) => (
+            <div key={section.title} className="footer-col" style={{ gridColumn: 'span 1' }}>
               <div 
-                onClick={() => toggleSection(title)}
+                onClick={() => toggleSection(section.title.toLowerCase())}
                 style={{ 
                   display: 'flex', 
                   justifyContent: 'space-between', 
@@ -276,20 +330,20 @@ export const Footer = () => {
                   cursor: window.innerWidth < 768 ? 'pointer' : 'default'
                 }}
               >
-                <h4 style={{ color: 'white', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em', margin: 0 }}>{title}</h4>
+                <h4 style={{ color: 'white', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em', margin: 0 }}>{section.title}</h4>
                 <div className="footer-chevron" style={{ display: 'none' }}>
-                  {openSections[title] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  {openSections[section.title.toLowerCase()] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </div>
               </div>
               <ul style={{ 
                 listStyle: 'none', 
                 padding: 0, 
-                display: openSections[title] || window.innerWidth >= 768 ? 'block' : 'none',
+                display: openSections[section.title.toLowerCase()] || window.innerWidth >= 768 ? 'block' : 'none',
                 transition: 'all 0.3s'
               }}>
-                {links.map(link => (
-                  <li key={link} style={{ marginBottom: '12px' }}>
-                    <a href="#" style={{ color: 'var(--gray-400)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.3s' }} className="footer-link-hover">{link}</a>
+                {section.links.map(link => (
+                  <li key={link.name} style={{ marginBottom: '12px' }}>
+                    <FooterLink to={link.path}>{link.name}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -340,7 +394,39 @@ export const Footer = () => {
       </div>
 
       <style>{`
-        .footer-link-hover:hover { color: var(--primary) !important; }
+        .footer-link-premium {
+          position: relative;
+          padding: 2px 0;
+        }
+        .footer-link-premium::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: var(--primary);
+          transition: width 0.3s ease;
+        }
+        .footer-link-premium:hover {
+          color: white !important;
+          transform: translateX(5px);
+        }
+        .footer-link-premium:hover::after {
+          width: 20px;
+        }
+        .footer-link-premium:active {
+          transform: scale(0.92) translateX(3px);
+          opacity: 0.8;
+        }
+        @keyframes clickPulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(0.95); }
+          100% { transform: scale(1); }
+        }
+        .footer-link-premium:active {
+          animation: clickPulse 0.2s ease;
+        }
         @media (max-width: 1024px) {
           .footer-grid { grid-template-columns: 1fr 1fr !important; }
         }

@@ -8,6 +8,10 @@ import { CONFIG } from '../config';
 import swiftImg from '../assets/swift.png';
 import fortunerImg from '../assets/fortuner.png';
 import tempoImg from '../assets/tempo.png';
+import bus35Img from '../assets/bus-35.png';
+import bus45Img from '../assets/bus-45.png';
+import bus55Img from '../assets/bus-55.png';
+import sleeperImg from '../assets/bus-sleeper.png';
 
 const VEHICLES = [
   { id: 'swift', name: "Maruti Swift", rate: 15, capacity: 4, type: "Budget Hatchback", image: swiftImg, features: ["AC", "USB", "ABS"], rating: 4.8, reviews: 120, tags: ["Family", "Budget"] },
@@ -15,13 +19,17 @@ const VEHICLES = [
   { id: 'ertiga', name: "Maruti Ertiga", rate: 17, capacity: 7, type: "MUV", image: fortunerImg, features: ["AC", "USB", "Spacious"], rating: 4.6, reviews: 110, tags: ["Large Family", "Budget"] },
   { id: 'innova', name: "Toyota Innova", rate: 20, capacity: 7, type: "Premium MUV", image: fortunerImg, features: ["AC", "Rear AC", "Premium Audio"], rating: 4.9, reviews: 150, tags: ["Luxury", "Outstation"] },
   { id: 'fortuner', name: "Toyota Fortuner", rate: 25, capacity: 7, type: "Luxury SUV", image: fortunerImg, features: ["AC", "Off-road", "Premium"], rating: 4.9, reviews: 85, tags: ["Elite", "Status"] },
-  { id: 'tempo', name: "Tempo Traveller", rate: 22, capacity: 14, type: "14-Seater Van", image: tempoImg, features: ["AC", "USB per seat", "Luxurious"], rating: 4.7, reviews: 45, tags: ["Group", "Long Trip"] }
+  { id: 'tempo', name: "Tempo Traveller", rate: 22, capacity: 14, type: "14-Seater Van", image: tempoImg, features: ["AC", "USB per seat", "Luxurious"], rating: 4.7, reviews: 45, tags: ["Group", "Long Trip"] },
+  { id: 'bus-35', name: "35-Seater Luxury Bus", rate: 45, capacity: 35, type: "Executive Coach", image: bus35Img, features: ["AC", "Pushback Seats", "GPS"], rating: 4.8, reviews: 30, tags: ["Group", "Corporate"] },
+  { id: 'bus-45', name: "45-Seater Grand Bus", rate: 55, capacity: 45, type: "Tourist Coach", image: bus45Img, features: ["AC", "Individual Vents", "Music"], rating: 4.7, reviews: 25, tags: ["Wedding", "Tour"] },
+  { id: 'bus-55', name: "55-Seater Elite Bus", rate: 65, capacity: 55, type: "Mega Coach", image: bus55Img, features: ["AC", "Premium Sound", "Emergency Exit"], rating: 4.9, reviews: 20, tags: ["Events", "Pilgrimage"] },
+  { id: 'bus-sleeper', name: "Luxury Sleeper Bus", rate: 75, capacity: 30, type: "Long Distance", image: sleeperImg, features: ["A/C Berths", "Privacy Curtains", "Lights"], rating: 4.8, reviews: 15, tags: ["Overnight", "Luxury"] }
 ];
 
-const BookingForm = () => {
+const BookingForm = ({ initialTripType }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    tripType: 'Outstation',
+    tripType: initialTripType || 'Outstation',
     pickupDate: '',
     returnDate: '',
     pickupLocation: '',
@@ -145,7 +153,7 @@ const BookingForm = () => {
     } catch (error) {
       console.error("Booking Error:", error);
       // Still open WhatsApp as backup if webhook fails
-      const whatsappMessage = `*Hello Kanpur Travels - BOOKING (Webhook Fallback)*%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}`;
+      const whatsappMessage = `*Ekadashi Tourist Family - BOOKING (Webhook Fallback)*%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}`;
       window.open(`https://wa.me/${CONFIG.business.whatsapp}?text=${whatsappMessage}`);
       setStep(5);
     } finally {
@@ -201,16 +209,17 @@ const BookingForm = () => {
                       <option>Outstation</option>
                       <option>Car Rental</option>
                       <option>Tempo/Group</option>
+                      <option>Bus Rental</option>
                       <option>Tour Package</option>
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="form-label">Passengers (1-25)</label>
-                    <input type="range" min="1" max="25" value={formData.passengers} onChange={(e) => updateFormData('passengers', parseInt(e.target.value))} style={{ width: '100%', accentColor: 'var(--primary)' }} />
+                    <label className="form-label">Passengers (1-55)</label>
+                    <input type="range" min="1" max="55" value={formData.passengers} onChange={(e) => updateFormData('passengers', parseInt(e.target.value))} style={{ width: '100%', accentColor: 'var(--primary)' }} />
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px', fontSize: '0.875rem', fontWeight: 600 }}>
                       <span>1</span>
                       <span style={{ color: 'var(--primary)' }}>{formData.passengers} People</span>
-                      <span>25</span>
+                      <span>55</span>
                     </div>
                   </div>
                   <div className="form-group">

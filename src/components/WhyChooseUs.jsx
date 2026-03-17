@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calculator, UserCheck, Wrench } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => (
   <div className="fade-in" style={{
@@ -30,33 +31,35 @@ const FeatureCard = ({ icon: Icon, title, description, color }) => (
 );
 
 const WhyChooseUs = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="services" className="section" style={{ backgroundColor: 'var(--white)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Why Choose Us</h2>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{t('why_us.title')}</h2>
           <p style={{ color: 'var(--gray-600)', maxWidth: '600px', margin: '0 auto' }}>
-            We've built our reputation on trust, safety, and transparency. Here's why 5,000+ travelers chose Ekadashi Tourist Family.
+            {t('why_us.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-3">
           <FeatureCard 
             icon={Calculator} 
-            title="Transparent Pricing" 
-            description="No Hidden Charges. See the complete breakdown before you book. What you see is what you pay. No surprises at the end."
+            title={t('why_us.feature1_title')}
+            description={t('why_us.feature1_desc')}
             color="var(--primary)"
           />
           <FeatureCard 
             icon={UserCheck} 
-            title="Professional Drivers" 
-            description="Verified & Trained. 8+ years of experience. Background checked. 24/7 support. Your safety is our priority."
+            title={t('why_us.feature2_title')}
+            description={t('why_us.feature2_desc')}
             color="var(--secondary)"
           />
           <FeatureCard 
             icon={Wrench} 
-            title="Safe & Certified Fleet" 
-            description="Regular servicing. Full insurance. GPS tracking. Emergency support included in all our vehicles."
+            title={t('why_us.feature3_title')}
+            description={t('why_us.feature3_desc')}
             color="var(--accent)"
           />
         </div>

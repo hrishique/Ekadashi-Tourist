@@ -1,8 +1,11 @@
-import React from 'react';
-import { Star, CheckCircle, Shield, Calculator, Car } from 'lucide-react';
+import { Star, CheckCircle, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import heroImage from '../assets/kanpur_hero.png';
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="hero-section" style={{
       position: 'relative',
@@ -21,20 +24,20 @@ const Hero = () => {
               marginBottom: '24px',
               fontFamily: 'Poppins, sans-serif'
             }}>
-              Premium Travel.<br />
-              <span style={{ color: '#2E7D32' }}>Transparent Pricing.</span><br />
-              Book in 5 Minutes.
+              {t('hero.title_1')}<br />
+              <span style={{ color: '#2E7D32' }}>{t('hero.title_2')}</span><br />
+              {t('hero.title_3')}
             </h1>
             
             <p className="hero-subheadline" style={{ 
               fontSize: '20px', 
               color: '#444', 
               lineHeight: 1.6, 
-              marginBottom: '32px',
+              marginBottom: '32px', 
               maxWidth: '600px',
               fontFamily: 'Inter, sans-serif'
             }}>
-              Over 5,000 customers trust Ekadashi Tourist Family for safe, comfortable journeys across India. No hidden charges. Professional drivers. 24/7 support.
+              {t('hero.subtitle')}
             </p>
 
             <div className="trust-badges" style={{ 
@@ -45,15 +48,15 @@ const Hero = () => {
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>
                 <Star size={20} fill="#FF9800" color="#FF9800" />
-                <span>4.7/5 Stars</span>
+                <span>{t('hero.stars')}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>
                 <CheckCircle size={20} color="#2E7D32" />
-                <span>2,000+ Trips</span>
+                <span>{t('hero.trips')}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>
                 <Shield size={20} color="#2196F3" />
-                <span>Insured</span>
+                <span>{t('hero.insured')}</span>
               </div>
             </div>
 
@@ -62,24 +65,32 @@ const Hero = () => {
               gap: '16px', 
               flexWrap: 'wrap' 
             }}>
-              <a href="#booking" className="btn btn-primary hero-btn" style={{ 
+              <Link to="/taxi-booking" className="btn btn-primary hero-btn" style={{ 
                 height: '56px', 
                 minWidth: '200px', 
                 backgroundColor: '#2E7D32',
                 fontSize: '1.125rem',
-                boxShadow: '0 4px 6px rgba(46, 125, 50, 0.2)'
+                boxShadow: '0 4px 6px rgba(46, 125, 50, 0.2)',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}>
-                Book Your Trip
-              </a>
-              <a href="#calculator" className="btn btn-secondary hero-btn" style={{ 
+                {t('hero.cta_taxi')}
+              </Link>
+              <Link to="/bus-booking" className="btn btn-secondary hero-btn" style={{ 
                 height: '56px', 
                 minWidth: '200px', 
                 borderColor: '#2E7D32',
                 color: '#2E7D32',
-                fontSize: '1.125rem'
+                fontSize: '1.125rem',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}>
-                Calculate Price
-              </a>
+                {t('hero.cta_bus')}
+              </Link>
             </div>
           </div>
 
@@ -103,21 +114,21 @@ const Hero = () => {
           box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         @media (max-width: 1200px) {
-          .hero-headline { fontSize: 48px !important; }
+          .hero-headline { fontSize: 44px !important; }
         }
         @media (max-width: 768px) {
-          .hero-section { padding: 48px 20px !important; }
-          .hero-headline { fontSize: 36px !important; text-align: center; }
-          .hero-subheadline { fontSize: 16px !important; text-align: center; margin-inline: auto; }
-          .trust-badges { justify-content: center; gap: 16px !important; }
-          .cta-buttons { flex-direction: column; width: 100%; }
-          .hero-btn { width: 100%; height: 48px !important; }
-          .grid-2 { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .hero-section { padding: 40px 16px !important; }
+          .hero-headline { fontSize: 32px !important; text-align: center; }
+          .hero-subheadline { fontSize: 16px !important; text-align: center; margin-inline: auto; margin-bottom: 24px !important; }
+          .trust-badges { justify-content: center; gap: 12px !important; margin-bottom: 24px !important; }
+          .cta-buttons { flex-direction: column; width: 100%; gap: 12px !important; }
+          .hero-btn { width: 100%; height: 52px !important; min-width: auto !important; }
+          .grid-2 { grid-template-columns: 1fr !important; gap: 24px !important; }
           .hero-image-container { order: -1; width: 100%; }
         }
-        @media (max-width: 375px) {
-          .hero-headline { fontSize: 32px !important; }
-          .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px !important; justify-items: center; }
+        @media (max-width: 480px) {
+          .hero-headline { fontSize: 28px !important; }
+          .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px !important; justify-items: center; }
         }
       `}</style>
     </section>

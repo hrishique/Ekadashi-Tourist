@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Phone, Calculator, X, MessageSquare, ChevronUp } from 'lucide-react';
+import { CONFIG } from '../config';
 
 const StickyWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +48,7 @@ const StickyWidget = () => {
           </button>
 
           <button 
-            onClick={() => window.location.href = 'tel:+919876543210'}
+            onClick={() => window.location.href = `tel:${CONFIG.business.phone}`}
             style={{
               padding: '12px 24px',
               backgroundColor: 'white',
@@ -70,7 +71,7 @@ const StickyWidget = () => {
           </button>
 
           <button 
-            onClick={() => window.location.href = 'https://wa.me/919876543210'}
+            onClick={() => window.location.href = `https://wa.me/${CONFIG.business.whatsapp}`}
             style={{
               padding: '12px 24px',
               backgroundColor: '#25D366',
@@ -129,18 +130,7 @@ const StickyWidget = () => {
         )}
       </button>
 
-      {/* Mobile Top Widget (Visible on small screens) */}
-      <div className="mobile-top-bar" style={{
-        position: 'fixed',
-        top: '20px',
-        right: '20px',
-        display: 'none',
-        gap: '12px',
-        zIndex: 3000
-      }}>
-        <button onClick={() => window.location.href = 'tel:+919876543210'} style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'var(--primary)', color: 'white', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Phone size={20} /></button>
-        <button onClick={() => window.location.href = 'https://wa.me/919876543210'} style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#25D366', color: 'white', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><MessageSquare size={20} /></button>
-      </div>
+
 
       <style>{`
         .widget-option:hover {
@@ -152,7 +142,6 @@ const StickyWidget = () => {
         }
         @media (max-width: 768px) {
           .sticky-widget { bottom: 20px; right: 20px; }
-          .mobile-top-bar { display: flex !important; }
         }
       `}</style>
     </div>

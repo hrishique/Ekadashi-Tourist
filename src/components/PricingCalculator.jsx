@@ -3,6 +3,7 @@ import {
   Calculator, MapPin, Calendar, Users, Info, 
   CheckCircle, ChevronRight, AlertTriangle, Tag, Loader 
 } from 'lucide-react';
+import { CONFIG } from '../config';
 
 const SUGGESTIONS = ["Kanpur", "Lucknow", "Agra", "Delhi", "Jaipur", "Gwalior", "Mathura"];
 
