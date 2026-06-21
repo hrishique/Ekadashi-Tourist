@@ -3,6 +3,7 @@ import { Phone, Menu, X, Languages } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CONFIG } from '../config';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,9 +23,10 @@ const Navbar = () => {
       position: 'sticky',
       top: 0,
       zIndex: 1000,
-      backgroundColor: 'rgba(255, 255, 255, 0.95)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid var(--gray-200)',
+      backgroundColor: 'rgba(255, 255, 255, 0.92)',
+      backdropFilter: 'blur(14px)',
+      borderBottom: '1px solid var(--gray-100)',
+      boxShadow: '0 1px 0 var(--gray-100), 0 8px 24px -12px rgba(17, 24, 21, 0.12)',
       padding: '0.75rem 0'
     }}>
       <div className="container" style={{
@@ -32,31 +34,17 @@ const Navbar = () => {
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'inherit' }}>
-          <div style={{
-            backgroundColor: 'var(--primary)',
-            color: 'white',
-            width: '36px',
-            height: '36px',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 'bold',
-            fontSize: '1.125rem'
-          }}>E</div>
-          <div>
-            <h1 style={{ fontSize: '1.125rem', margin: 0, fontWeight: 700, letterSpacing: '-0.02em' }}>Ekadashi Tourist Family</h1>
-            <p style={{ fontSize: '0.6875rem', color: 'var(--gray-600)', margin: 0 }}>{t('nav.premium_rental')}</p>
-          </div>
+        <Link to="/" className="brand-logo-link" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'inherit' }}>
+          <img src={logo} alt="Ekadashi Tours" style={{ height: '54px', width: 'auto', display: 'block' }} />
+          <p className="brand-tagline" style={{ fontSize: '0.6875rem', color: 'var(--gray-600)', margin: 0, fontWeight: 600 }}>{t('nav.premium_rental')}</p>
         </Link>
 
         {/* Desktop Links */}
         <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           <div style={{ display: 'flex', gap: '20px' }}>
             <Link to="/" className="nav-link">{t('nav.home')}</Link>
-            <Link to="/taxi-booking" className="nav-link">{t('nav.taxi')}</Link>
             <Link to="/bus-booking" className="nav-link">{t('nav.buses')}</Link>
+            <Link to="/taxi-booking" className="nav-link">{t('nav.taxi')}</Link>
             <a href="/#tours" className="nav-link">{t('nav.tours')}</a>
             <Link to="/about" className="nav-link">{t('nav.about')}</Link>
             <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
@@ -81,7 +69,7 @@ const Navbar = () => {
             }}
           >
             <Languages size={14} />
-            <span>{currentLang === 'EN' ? 'HINDI' : 'ENGLISH'}</span>
+            <span>{currentLang === 'EN' ? 'हिन्दी' : 'Hinglish'}</span>
           </button>
 
           <a href={`tel:${CONFIG.business.phone}`} className="btn btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem', gap: '8px', borderRadius: '100px' }}>
@@ -146,8 +134,8 @@ const Navbar = () => {
         pointerEvents: 'none'
       }}>
         <Link to="/" onClick={toggleMenu} className="mobile-nav-link">{t('nav.home')}</Link>
-        <Link to="/taxi-booking" onClick={toggleMenu} className="mobile-nav-link">{t('nav.taxi')}</Link>
         <Link to="/bus-booking" onClick={toggleMenu} className="mobile-nav-link">{t('nav.buses')}</Link>
+        <Link to="/taxi-booking" onClick={toggleMenu} className="mobile-nav-link">{t('nav.taxi')}</Link>
         <a href="/#tours" onClick={toggleMenu} className="mobile-nav-link">{t('nav.tours')}</a>
         <Link to="/about" onClick={toggleMenu} className="mobile-nav-link">{t('nav.about')}</Link>
         <Link to="/contact" onClick={toggleMenu} className="mobile-nav-link">{t('nav.contact')}</Link>
@@ -192,6 +180,10 @@ const Navbar = () => {
             transform: translateY(0) !important;
             pointer-events: all !important;
           }
+        }
+        @media (max-width: 480px) {
+          .brand-logo-link img { height: 44px !important; }
+          .brand-tagline { display: none !important; }
         }
       `}</style>
     </nav>

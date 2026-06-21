@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Hero from '../components/Hero';
+import FleetGallery from '../components/FleetGallery';
 import WhyChooseUs from '../components/WhyChooseUs';
 import VehicleShowcase from '../components/VehicleShowcase';
 import BusRental from '../components/BusRental';
@@ -17,6 +18,7 @@ const Home = () => {
   return (
     <main>
       <Hero />
+      <FleetGallery />
       <WhyChooseUs />
       
       {/* Dynamic Entry Points */}
@@ -27,17 +29,39 @@ const Home = () => {
             <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem' }}>{t('home.services_subtitle')}</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', maxWidth: '1000px', margin: '0 auto' }}>
-            <div style={{ padding: '40px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', textAlign: 'center' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🚖</div>
-              <h3 style={{ marginBottom: '16px' }}>{t('home.taxi_title')}</h3>
-              <p style={{ color: 'var(--gray-600)', marginBottom: '24px' }}>{t('home.taxi_desc')}</p>
-              <a href="/taxi-booking" className="btn btn-primary">{t('hero.cta_taxi')}</a>
-            </div>
-            <div style={{ padding: '40px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', textAlign: 'center' }}>
+            <div style={{
+              position: 'relative',
+              padding: '44px 40px',
+              background: 'linear-gradient(165deg, #ffffff, var(--gray-50))',
+              borderRadius: '28px',
+              textAlign: 'center',
+              border: '2px solid var(--primary)',
+              boxShadow: '0 20px 40px -10px rgba(46, 125, 50, 0.25)'
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-14px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                backgroundColor: 'var(--accent)',
+                color: 'white',
+                padding: '6px 18px',
+                borderRadius: '100px',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.05em',
+                boxShadow: 'var(--shadow-md)'
+              }}>MOST BOOKED</div>
               <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🚌</div>
               <h3 style={{ marginBottom: '16px' }}>{t('home.bus_title')}</h3>
               <p style={{ color: 'var(--gray-600)', marginBottom: '24px' }}>{t('home.bus_desc')}</p>
-              <a href="/bus-booking" className="btn btn-primary">{t('hero.cta_bus')}</a>
+              <a href="/bus-booking" className="btn btn-primary" style={{ background: 'linear-gradient(135deg, #2E7D32, #1B5E20)' }}>{t('hero.cta_bus')}</a>
+            </div>
+            <div style={{ padding: '40px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', textAlign: 'center', border: '1px solid var(--gray-100)' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🚖</div>
+              <h3 style={{ marginBottom: '16px' }}>{t('home.taxi_title')}</h3>
+              <p style={{ color: 'var(--gray-600)', marginBottom: '24px' }}>{t('home.taxi_desc')}</p>
+              <a href="/taxi-booking" className="btn btn-secondary">{t('hero.cta_taxi')}</a>
             </div>
           </div>
         </div>
