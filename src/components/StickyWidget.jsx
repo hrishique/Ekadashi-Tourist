@@ -43,7 +43,7 @@ const StickyWidget = () => {
             }}
             className="widget-option"
           >
-            <Calculator size={18} color="var(--primary)" /> 
+            <Calculator size={18} color="var(--primary)" />
             <span>Price Calculator</span>
           </button>
 
@@ -66,8 +66,8 @@ const StickyWidget = () => {
             }}
             className="widget-option"
           >
-            <Phone size={18} color="var(--secondary)" /> 
-            <span>Quick Call</span>
+            <Phone size={18} color="var(--secondary)" />
+            <span>Turant Call</span>
           </button>
 
           <button 

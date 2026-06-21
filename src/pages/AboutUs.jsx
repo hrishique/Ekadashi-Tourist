@@ -10,7 +10,7 @@ const AboutUs = () => {
           <div style={{ maxWidth: '800px' }}>
             <h1 style={{ fontSize: '4rem', marginBottom: '24px', color: 'white' }}>Trusted by Thousands Since 2014</h1>
             <p style={{ fontSize: '1.25rem', color: 'var(--gray-400)', lineHeight: '1.6' }}>
-              Ekadashi Tourist Family is more than just a car rental service. We are your partners in creating lasting memories across the length and breadth of India.
+              Ekadashi Tours is more than just a car rental service. We are your partners in creating lasting memories across the length and breadth of India.
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ const AboutUs = () => {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '60px' }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Why We Stand Out</h2>
-            <p style={{ color: 'var(--gray-600)' }}>The values that drive Ekadashi Tourist Family forward.</p>
+            <p style={{ color: 'var(--gray-600)' }}>The values that drive Ekadashi Tours forward.</p>
           </div>
           <div className="grid grid-3">
             {[
