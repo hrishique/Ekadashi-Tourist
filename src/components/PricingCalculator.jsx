@@ -81,7 +81,7 @@ const PricingCalculator = () => {
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Instant Price Calculator</h2>
           <p style={{ color: 'var(--gray-600)', maxWidth: '600px', margin: '0 auto' }}>
-            Get an exact quote for your trip in seconds. No hidden charges, 100% transparency.
+            Apne safar ka exact quote second mein paayein. Koi hidden charge nahi, 100% transparency.
           </p>
         </div>
 
@@ -239,13 +239,13 @@ const PricingCalculator = () => {
                 </div>
 
                 <button onClick={() => window.location.href = '#booking'} className="btn btn-primary" style={{ width: '100%', height: '56px', gap: '8px' }}>
-                  BOOK AT THIS PRICE <ChevronRight size={20} />
+                  ISI DAAM PE BOOK KAREIN <ChevronRight size={20} />
                 </button>
               </div>
             ) : (
               <div style={{ textAlign: 'center', padding: '40px 0' }}>
                 <Calculator size={48} color="var(--gray-700)" style={{ marginBottom: '24px' }} />
-                <p style={{ color: 'var(--gray-400)' }}>Enter your trip details to get an instant quote.</p>
+                <p style={{ color: 'var(--gray-400)' }}>Instant quote ke liye apne trip ki details bharein.</p>
               </div>
             )}
           </div>
@@ -255,9 +255,9 @@ const PricingCalculator = () => {
         <div style={{ maxWidth: '1100px', margin: '40px auto 0', padding: '24px', backgroundColor: 'rgba(255, 152, 0, 0.05)', borderRadius: '16px', border: '1px solid rgba(255, 152, 0, 0.2)', display: 'flex', gap: '16px' }}>
           <AlertTriangle color="var(--accent)" size={24} />
           <div style={{ fontSize: '0.875rem' }}>
-            <p style={{ fontWeight: 700, color: 'var(--accent)', marginBottom: '4px' }}>What's not included?</p>
+            <p style={{ fontWeight: 700, color: 'var(--accent)', marginBottom: '4px' }}>Ismein kya shaamil nahi hai?</p>
             <p style={{ color: 'var(--gray-600)' }}>
-              Estimate doesn't include meals, hotel accommodations, or state entry taxes. Parking charges beyond 2 hours will be billed as per actuals.
+              Estimate mein khana, hotel ya state entry tax shaamil nahi hai. 2 ghante se zyada parking charge actual ke hisaab se lagega.
             </p>
           </div>
         </div>

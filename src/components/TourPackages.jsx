@@ -41,7 +41,7 @@ const TourPackages = () => {
   ];
 
   const handleBookNow = (title) => {
-    const message = `Namaste! I am interested in booking the ${title} tour package with Ekadashi Tourist Family. Please provide more details.`;
+    const message = `Namaste! I am interested in booking the ${title} tour package with Ekadashi Tours. Please provide more details.`;
     window.location.href = `https://wa.me/${CONFIG.business.whatsapp}?text=${encodeURIComponent(message)}`;
   };
 
@@ -108,7 +108,7 @@ const TourPackages = () => {
         {/* Full Packages Section */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div style={{ display: 'inline-block', padding: '8px 20px', backgroundColor: 'rgba(34, 197, 94, 0.1)', color: 'var(--primary)', borderRadius: '100px', fontSize: '0.875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
-            Full Inclusions • Fixed Pricing
+Sab Kuch Shaamil • Fixed Pricing
           </div>
           <h2 style={{ fontSize: '2.25rem', marginBottom: '16px' }}>{t('tours.full_package_title')}</h2>
           <p style={{ color: 'var(--gray-600)', maxWidth: '600px', margin: '0 auto' }}>{t('tours.full_package_subtitle')}</p>
@@ -148,7 +148,7 @@ const TourPackages = () => {
                     <Clock size={16} /> {pkg.duration} {t('tours.days')}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--gray-600)', fontSize: '0.875rem' }}>
-                    <CheckCircle2 size={16} color="#25D336" /> All Inclusive
+                    <CheckCircle2 size={16} color="#25D336" /> Sab Shaamil
                   </div>
                 </div>
 

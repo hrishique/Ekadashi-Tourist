@@ -1,6 +1,6 @@
 export const CONFIG = {
   business: {
-    name: "Ekadashi Tourist Family",
+    name: "Ekadashi Tours",
     phone: "+91-7275732399",
     email: "ekadashitouristfamily@gmail.com",
     whatsapp: "917275732399",

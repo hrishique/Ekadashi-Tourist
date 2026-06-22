@@ -36,7 +36,7 @@ const LegalLayout = ({ title, children }) => (
 export const Terms = () => (
   <LegalLayout title="Terms of Use">
     <h2>1. Introduction</h2>
-    <p>Welcome to Ekadashi Tourist Family. By using our website and services, you agree to comply with and be bound by the following terms and conditions.</p>
+    <p>Welcome to Ekadashi Tours. By using our website and services, you agree to comply with and be bound by the following terms and conditions.</p>
     
     <h2>2. Booking Policy</h2>
     <p>All bookings are subject to availability. A booking is considered confirmed only after receipt of the advance payment and issuance of a booking ID.</p>
@@ -45,7 +45,7 @@ export const Terms = () => (
     <p>Users must provide accurate information during booking. Any damage to the vehicle during the rental period due to passenger negligence may result in additional charges.</p>
     
     <h2>4. Liability</h2>
-    <p>Ekadashi Tourist Family is not liable for any personal belongings left in the vehicle. While we prioritize safety, we are not responsible for delays caused by traffic, weather, or road conditions.</p>
+    <p>Ekadashi Tours is not liable for any personal belongings left in the vehicle. While we prioritize safety, we are not responsible for delays caused by traffic, weather, or road conditions.</p>
     
     <h2>5. Governing Law</h2>
     <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Kanpur, Uttar Pradesh.</p>

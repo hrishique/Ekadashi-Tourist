@@ -146,14 +146,14 @@ const BookingForm = ({ initialTripType }) => {
       });
 
       // 2. Open WhatsApp (Triggered by user click, but we'll do it after webhook attempt)
-      const whatsappMessage = `*Ekadashi Tourist Family - NEW BOOKING*%0A*Order ID:* ${newOrderId}%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}%0A*Vehicle:* ${formData.vehicle.name}%0A*Total:* ₹${pricing.finalPrice}%0A*Status:* Awaiting Payment`;
+      const whatsappMessage = `*Ekadashi Tours - NEW BOOKING*%0A*Order ID:* ${newOrderId}%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}%0A*Vehicle:* ${formData.vehicle.name}%0A*Total:* ₹${pricing.finalPrice}%0A*Status:* Awaiting Payment`;
       
       window.open(`https://wa.me/${CONFIG.business.whatsapp}?text=${whatsappMessage}`);
       setStep(5); // Success Step
     } catch (error) {
       console.error("Booking Error:", error);
       // Still open WhatsApp as backup if webhook fails
-      const whatsappMessage = `*Ekadashi Tourist Family - BOOKING (Webhook Fallback)*%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}`;
+      const whatsappMessage = `*Ekadashi Tours - BOOKING (Webhook Fallback)*%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Trip:* ${formData.pickupLocation} to ${formData.dropLocation}`;
       window.open(`https://wa.me/${CONFIG.business.whatsapp}?text=${whatsappMessage}`);
       setStep(5);
     } finally {

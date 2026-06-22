@@ -9,6 +9,7 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CONFIG } from '../config';
+import logo from '../assets/logo.png';
 
 const ContactSupport = () => {
   const { t } = useTranslation();
@@ -132,7 +133,7 @@ const ContactSupport = () => {
         {/* Credentials Section */}
         <div style={{ marginTop: '100px', paddingTop: '80px', borderTop: '1px solid var(--gray-100)' }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.875rem', color: 'var(--gray-500)', fontWeight: 700 }}>TRUSTED BY THOUSANDS • CERTIFIED & INSURED</h4>
+            <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.875rem', color: 'var(--gray-500)', fontWeight: 700 }}>HAZAARON KA BHAROSA • CERTIFIED & INSURED</h4>
           </div>
           <div className="grid-credentials" style={{ 
             display: 'grid', 
@@ -300,14 +301,11 @@ export const Footer = () => {
         }}>
           {/* Brand Column */}
           <div style={{ gridColumn: 'span 1' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-              <div style={{ width: '40px', height: '40px', backgroundColor: 'var(--primary)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontWeight: 800, fontSize: '1.5rem' }}>ET</span>
-              </div>
-              <span style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.5px' }}>Ekadashi Tourist Family</span>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
+              <img src={logo} alt="Ekadashi Tours" style={{ height: '60px', width: 'auto' }} />
             </div>
             <p style={{ color: 'var(--gray-400)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '24px' }}>
-              Premium Travel Rentals Across India. Experience the difference of professional service.
+              Poore Bharat mein premium bus aur travel rental. Professional service ka farak khud mehsoos karein.
             </p>
             <div style={{ display: 'flex', gap: '16px' }}>
               <a href={CONFIG.business.social.facebook} style={{ color: 'white' }}><Facebook size={20} /></a>
@@ -384,7 +382,7 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-          <p style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>© 2024 Ekadashi Tourist Family. All rights reserved. | Sitemap</p>
+          <p style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>© 2024 Ekadashi Tours. All rights reserved. | Sitemap</p>
           <div style={{ display: 'flex', gap: '24px' }}>
             <span style={{ color: 'var(--gray-500)', fontSize: '0.8125rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
               <ShieldCheck size={12} color="var(--primary)" /> SSL Secured

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { 
-  Star, Search, Filter, Info, ChevronRight, X, 
-  Car, Users, Luggage, Snowflake, Music, ShieldCheck, 
-  Settings, UserCheck, Zap, Camera
+import {
+  Star, Search, Filter, Info, ChevronRight, X,
+  Car, Users, Luggage, Snowflake, Music, ShieldCheck,
+  Settings, UserCheck, Zap, Camera, CheckCircle2
 } from 'lucide-react';
 
 import swiftImg from '../assets/swift.png';
@@ -143,7 +143,7 @@ const VehicleCard = ({ vehicle, onDetails }) => (
         fontSize: '0.75rem',
         fontWeight: 700,
         zIndex: 1
-      }}>MOST POPULAR</div>
+      }}>SABSE POPULAR</div>
     )}
 
     <div style={{ height: '220px', backgroundColor: 'var(--gray-50)', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -182,7 +182,7 @@ const VehicleCard = ({ vehicle, onDetails }) => (
       </div>
 
       <div style={{ display: 'flex', gap: '12px', marginTop: 'auto' }}>
-        <button className="btn btn-primary" style={{ flex: 1, padding: '10px' }} onClick={() => window.location.href = '#booking'}>BOOK</button>
+        <button className="btn btn-primary" style={{ flex: 1, padding: '10px' }} onClick={() => window.location.href = '#booking'}>BOOK KAREIN</button>
         <button className="btn btn-secondary" style={{ flex: 1, padding: '10px' }} onClick={() => onDetails(vehicle)}>DETAILS</button>
       </div>
     </div>
@@ -208,7 +208,7 @@ const DetailsModal = ({ vehicle, onClose }) => (
             </div>
           </div>
 
-          <h4 style={{ marginBottom: '20px', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em' }}>Vehicle Highlights</h4>
+          <h4 style={{ marginBottom: '20px', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.05em' }}>Gaadi Ki Khasiyat</h4>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', backgroundColor: 'white', padding: '12px', borderRadius: '12px' }}>
               <Users size={18} color="var(--primary)" />
@@ -243,7 +243,7 @@ const DetailsModal = ({ vehicle, onClose }) => (
           </div>
 
           <div style={{ marginBottom: '40px' }}>
-            <h4 style={{ marginBottom: '16px' }}>What's Included</h4>
+            <h4 style={{ marginBottom: '16px' }}>Kya Shaamil Hai</h4>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.875rem', color: 'var(--gray-600)' }}><CheckCircle2 size={16} color="var(--success)" /> Verified Driver</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.875rem', color: 'var(--gray-600)' }}><CheckCircle2 size={16} color="var(--success)" /> 24/7 Support</div>
@@ -260,8 +260,8 @@ const DetailsModal = ({ vehicle, onClose }) => (
           </div>
 
           <div style={{ display: 'flex', gap: '16px' }}>
-            <button className="btn btn-primary" style={{ flex: 1, height: '56px' }} onClick={() => window.location.href = '#booking'}>BOOK THIS VEHICLE</button>
-            <button className="btn btn-secondary" style={{ flex: 1, height: '56px' }} onClick={onClose}>COMPARE OTHERS</button>
+            <button className="btn btn-primary" style={{ flex: 1, height: '56px' }} onClick={() => window.location.href = '#booking'}>YE GAADI BOOK KAREIN</button>
+            <button className="btn btn-secondary" style={{ flex: 1, height: '56px' }} onClick={onClose}>DOOSRI DEKHEIN</button>
           </div>
         </div>
       </div>
@@ -285,9 +285,9 @@ const VehicleShowcase = () => {
     <section id="vehicles" className="section">
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Our Elite Fleet</h2>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Hamari Elite Fleet</h2>
           <p style={{ color: 'var(--gray-600)', maxWidth: '600px', margin: '0 auto', marginBottom: '40px' }}>
-            Choose from our range of verified vehicles. From budget hatchbacks to luxury coaches, we have it all.
+            Hamari verified gaadiyon mein se chunein. Budget hatchback se lekar luxury coach tak — sab kuch ek jagah.
           </p>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
@@ -320,8 +320,8 @@ const VehicleShowcase = () => {
         <div style={{ marginTop: '60px', textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', backgroundColor: 'var(--gray-50)', padding: '16px 32px', borderRadius: '16px', border: '1px solid var(--gray-100)' }}>
             <Car size={24} color="var(--primary)" />
-            <span style={{ fontWeight: 600 }}>Need a detailed comparison?</span>
-            <button onClick={() => setSelectedVehicle(FLEET[0])} style={{ color: 'var(--primary)', fontWeight: 700, border: 'none', background: 'none', cursor: 'pointer', textDecoration: 'underline' }}>Compare Features</button>
+            <span style={{ fontWeight: 600 }}>Detailed comparison chahiye?</span>
+            <button onClick={() => setSelectedVehicle(FLEET[0])} style={{ color: 'var(--primary)', fontWeight: 700, border: 'none', background: 'none', cursor: 'pointer', textDecoration: 'underline' }}>Features Compare Karein</button>
           </div>
         </div>
       </div>

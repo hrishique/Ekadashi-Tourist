@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Users, Shield, Snowflake, Wifi, Music, ChevronRight, Star, Clock } from 'lucide-react';
 import { CONFIG } from '../config';
 
-// Images from assets
-import bus35 from '../assets/bus-35.png';
-import bus45 from '../assets/bus-45.png';
-import bus55 from '../assets/bus-55.png';
-import sleeperImg from '../assets/bus-sleeper.png';
+// Real fleet photos from assets
+import bus35 from '../assets/real-bus-seats-rows.jpg';
+import bus45 from '../assets/real-bus-aisle.jpg';
+import bus55 from '../assets/real-bus-tv-front.jpg';
+import sleeperImg from '../assets/real-bus-sleeper.jpg';
 
 const BUS_FLEET = [
   {
@@ -16,8 +16,8 @@ const BUS_FLEET = [
     type: "Executive Coach",
     features: ["Pushback Seats", "Full AC", "GPS Tracking", "USB Charging"],
     image: bus35,
-    tag: "Most Popular",
-    pricePrefix: "Starting from ₹45/km"
+    tag: "Sabse Popular",
+    pricePrefix: "₹45/km se shuru"
   },
   {
     id: 'bus-45',
@@ -26,18 +26,18 @@ const BUS_FLEET = [
     type: "Tourist Coach",
     features: ["H-Line Seating", "Individual AC", "Mic & Audio", "Ample Luggage"],
     image: bus45,
-    tag: "Large Groups",
-    pricePrefix: "Starting from ₹55/km"
+    tag: "Bade Group",
+    pricePrefix: "₹55/km se shuru"
   },
   {
     id: 'bus-55',
     name: "Elite 55-Seater",
     capacity: 55,
     type: "Mega Coach",
-    features: ["Premium Interior", "Pantograph Lockers", "Emergency Exit", "High-Def TV"],
+    features: ["Premium Interior", "Pantograph Lockers", "Emergency Exit", "LED TV"],
     image: bus55,
     tag: "Corporate/Events",
-    pricePrefix: "Starting from ₹65/km"
+    pricePrefix: "₹65/km se shuru"
   },
   {
     id: 'sleeper',
@@ -46,8 +46,8 @@ const BUS_FLEET = [
     type: "Long Distance",
     features: ["Full Sleeper Berths", "Privacy Curtains", "Reading Lights", "Blankets Provided"],
     image: sleeperImg,
-    tag: "Overnight Journeys",
-    pricePrefix: "Starting from ₹75/km"
+    tag: "Raat Ke Safar Ke Liye",
+    pricePrefix: "₹75/km se shuru"
   }
 ];
 
@@ -59,14 +59,14 @@ const BusRental = () => {
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px', flexWrap: 'wrap', gap: '24px' }}>
           <div style={{ maxWidth: '600px', textAlign: window.innerWidth < 768 ? 'center' : 'left' }}>
-            <span style={{ color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.875rem', display: 'block', marginBottom: '12px' }}>Mass Transport Solutions</span>
-            <h2 className="bus-title" style={{ lineHeight: 1.1, marginBottom: '20px' }}>Luxury Bus Rentals for Large Groups</h2>
+            <span style={{ color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.875rem', display: 'block', marginBottom: '12px' }}>Bade Group Ke Liye Transport</span>
+            <h2 className="bus-title" style={{ lineHeight: 1.1, marginBottom: '20px' }}>Bade Groups Ke Liye Luxury Bus Rental</h2>
             <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem' }}>
-              From corporate events to family weddings, our premium bus fleet ensures everyone travels together in ultimate comfort and safety.
+              Corporate event ho ya family shaadi — hamari premium bus fleet sabko ek saath, full comfort aur safety ke saath le jaati hai.
             </p>
           </div>
           <button className="btn btn-primary" onClick={() => window.location.href = `https://wa.me/${CONFIG.business.whatsapp}`} style={{ height: '56px', padding: '0 32px', width: window.innerWidth < 768 ? '100%' : 'auto' }}>
-            GET GROUP QUOTE
+            GROUP QUOTE LEIN
           </button>
         </div>
 
@@ -109,7 +109,7 @@ const BusRental = () => {
 
             <div className="spec-footer" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '40px' }}>
               <div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>{activeBus.name} Features</h3>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>{activeBus.name} Ki Khasiyat</h3>
                 <div className="spec-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px' }}>
                   {activeBus.features.map(f => (
                     <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--gray-700)', fontSize: '0.9375rem' }}>
@@ -125,21 +125,21 @@ const BusRental = () => {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--gray-500)' }}>
                     <Shield size={20} />
-                    <span>Safety Insured</span>
+                    <span>Fully Insured</span>
                   </div>
                 </div>
               </div>
 
               <div style={{ backgroundColor: 'var(--gray-900)', color: 'white', padding: '32px', borderRadius: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <span style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.875rem', marginBottom: '8px' }}>ESTIMATED RATE</span>
+                <span style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.875rem', marginBottom: '8px' }}>ANUMANIT RATE</span>
                 <h4 style={{ fontSize: '2rem', color: 'white', margin: '0 0 8px 0' }}>{activeBus.pricePrefix}</h4>
-                <p style={{ color: 'var(--gray-500)', fontSize: '0.75rem', marginBottom: '24px' }}>*Tolls & State Entry extra. Final quote varies by route & duration.</p>
-                <button 
-                  onClick={() => window.location.href = `https://wa.me/${CONFIG.business.whatsapp}?text=I'm interested in booking the ${activeBus.name}`}
-                  className="btn btn-primary" 
+                <p style={{ color: 'var(--gray-500)', fontSize: '0.75rem', marginBottom: '24px' }}>*Toll aur State Entry alag se. Final quote route aur duration pe depend karta hai.</p>
+                <button
+                  onClick={() => window.location.href = `https://wa.me/${CONFIG.business.whatsapp}?text=Main ${activeBus.name} book karna chahta hoon`}
+                  className="btn btn-primary"
                   style={{ width: '100%', height: '56px' }}
                 >
-                  REQUEST QUOTE
+                  QUOTE REQUEST KAREIN
                 </button>
               </div>
             </div>
@@ -149,9 +149,9 @@ const BusRental = () => {
         {/* Global Bus Features */}
         <div className="features-strip" style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '30px' }}>
           {[
-            { icon: Snowflake, title: "Climate Controlled", desc: "Heavy-duty AC systems" },
-            { icon: Users, title: "Versatile Fleet", desc: "35 to 55 seat options" },
-            { icon: Clock, title: "Expert Drivers", desc: "10+ yrs experience" },
+            { icon: Snowflake, title: "Full AC", desc: "Heavy-duty AC systems" },
+            { icon: Users, title: "Har Size Ki Bus", desc: "35 se 55 seat options" },
+            { icon: Clock, title: "Expert Drivers", desc: "10+ saal ka experience" },
             { icon: Wifi, title: "Premium Comfort", desc: "Reclining luxury seats" }
           ].map((item, i) => (
             <div key={i} style={{ textAlign: 'center' }}>

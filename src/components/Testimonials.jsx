@@ -88,8 +88,8 @@ const Testimonials = () => {
             <span style={{ fontWeight: 700, fontSize: '1.25rem' }}>4.7/5 Stars</span>
             <span style={{ color: 'var(--gray-500)' }}>(250+ Reviews)</span>
           </div>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '12px' }}>What Our Customers Say</h2>
-          <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem' }}>5,000+ Happy Customers & Growing</p>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '12px' }}>Hamare Customers Kya Kehte Hain</h2>
+          <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem' }}>5,000+ Khush Customers, Aur Badh Rahe Hain</p>
         </div>
 
         {/* Carousel Container */}

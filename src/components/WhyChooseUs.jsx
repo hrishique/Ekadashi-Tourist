@@ -3,7 +3,7 @@ import { Calculator, UserCheck, Wrench } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => (
-  <div className="fade-in" style={{
+  <div className="fade-in feature-card-premium" style={{
     padding: '32px',
     borderRadius: '20px',
     backgroundColor: 'white',
@@ -64,6 +64,14 @@ const WhyChooseUs = () => {
           />
         </div>
       </div>
+
+      <style>{`
+        .feature-card-premium:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-xl);
+          border-color: var(--gray-200);
+        }
+      `}</style>
     </section>
   );
 };
