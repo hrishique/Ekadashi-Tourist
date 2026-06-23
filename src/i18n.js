@@ -105,8 +105,8 @@ const resources = {
         "email_team": "TEAM KO EMAIL KAREIN"
       },
       "tours": {
-        "title": "Exclusive Tour Package",
-        "subtitle": "Yaadgaar memories ke liye saavdhani se design ki gayi journeys. All-inclusive comfort.",
+        "title": "Hamari Special Yatrayein",
+        "subtitle": "Kanpur se pavitra teerth yatra — AC luxury bus, anubhavi driver aur poori vyavastha ke saath. \"Yeh vyavsay nahi, shraddhaluon ki seva hai.\"",
         "full_package_title": "Full Group Package",
         "full_package_subtitle": "Toll, parking, state tax aur professional driver — sab kuch shaamil, poora itinerary.",
         "book_wa": "WhatsApp Pe Book Karein",
@@ -247,8 +247,8 @@ const resources = {
         "email_team": "टीम को ईमेल करें"
       },
       "tours": {
-        "title": "विशेष टूर पैकेज",
-        "subtitle": "अविस्मरणीय यादों के लिए सावधानीपूर्वक तैयार की गई यात्राएं। सर्व-समावेशी आराम।",
+        "title": "हमारी विशेष यात्राएं",
+        "subtitle": "कानपुर से पवित्र तीर्थ यात्रा — एसी लग्ज़री बस, अनुभवी ड्राइवर और पूरी व्यवस्था के साथ। \"यह व्यवसाय नहीं, श्रद्धालुओं की सेवा है।\"",
         "full_package_title": "पूर्ण समूह पैकेज",
         "full_package_subtitle": "टोल, पार्किंग, राज्य कर और पेशेवर ड्राइवर सहित पूर्ण यात्रा कार्यक्रम।",
         "book_wa": "व्हाट्सएप के माध्यम से बुक करें",
