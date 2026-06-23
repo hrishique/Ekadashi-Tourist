@@ -93,7 +93,7 @@ const FleetGallery = () => {
           <Link to="/bus-booking" className="btn btn-primary" style={{
             height: '56px', padding: '0 36px', gap: '10px', fontSize: '1.0625rem',
             display: 'inline-flex', alignItems: 'center',
-            background: 'linear-gradient(135deg, #2E7D32, #1B5E20)'
+            background: 'linear-gradient(135deg, #EA580C, #C2410C)'
           }}>
             {t('gallery.cta')} <ArrowRight size={20} />
           </Link>

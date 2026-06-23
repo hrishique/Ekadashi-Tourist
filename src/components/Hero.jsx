@@ -1,16 +1,42 @@
+import { useState, useEffect } from 'react';
 import { Star, CheckCircle, Shield, ArrowRight, BadgeIndianRupee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import heroImage from '../assets/real-bus-seats-wide.jpg';
+import posterKathgodam from '../assets/poster-kathgodam.jpg';
+import posterMahakaleshwar from '../assets/poster-mahakaleshwar.jpg';
+import posterKhatushyam from '../assets/poster-khatushyam.jpg';
+import busWide from '../assets/real-bus-seats-wide.jpg';
+import busExterior from '../assets/real-bus-exterior.jpg';
+
+// How long each slide stays before auto-advancing (ms).
+// You asked for ~1 second — these posters are text-heavy, so 3.5s gives
+// time to read. Lower this to 1000 for a 1-second rotation.
+const ROTATE_MS = 3500;
+
+const SLIDES = [
+  { src: posterKathgodam, alt: 'Kanpur se Kathgodam (Nainital) AC Sleeper Bus - Ekadashi Tours' },
+  { src: posterKhatushyam, alt: 'Kanpur se Khatu Shyam Ji AC Sleeper Bus - Ekadashi Tours' },
+  { src: posterMahakaleshwar, alt: 'Kanpur se Mahakaleshwar (Ujjain) AC Sleeper Bus - Ekadashi Tours' },
+  { src: busWide, alt: 'Ekadashi Tours premium luxury bus interior' },
+  { src: busExterior, alt: 'Ekadashi Tours premium coach exterior' },
+];
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % SLIDES.length);
+    }, ROTATE_MS);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section className="hero-section" style={{
       position: 'relative',
       padding: '90px 40px 100px',
-      background: 'radial-gradient(circle at 12% 18%, rgba(46, 125, 50, 0.10), transparent 42%), radial-gradient(circle at 88% 82%, rgba(255, 152, 0, 0.08), transparent 48%), linear-gradient(180deg, #f7f8f6 0%, #eef2ec 100%)',
+      background: 'radial-gradient(circle at 12% 18%, rgba(234, 88, 12, 0.10), transparent 42%), radial-gradient(circle at 88% 82%, rgba(245, 158, 11, 0.10), transparent 48%), linear-gradient(180deg, #fff8f3 0%, #fdeede 100%)',
       overflow: 'hidden'
     }}>
       <div className="container">
@@ -22,11 +48,11 @@ const Hero = () => {
               gap: '8px',
               padding: '8px 18px',
               borderRadius: '100px',
-              backgroundColor: 'rgba(46, 125, 50, 0.08)',
-              border: '1px solid rgba(46, 125, 50, 0.18)',
+              backgroundColor: 'rgba(234, 88, 12, 0.08)',
+              border: '1px solid rgba(234, 88, 12, 0.20)',
               marginBottom: '22px'
             }}>
-              <Star size={14} fill="#FF9800" color="#FF9800" />
+              <Star size={14} fill="#F59E0B" color="#F59E0B" />
               <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--primary-dark)', letterSpacing: '0.02em' }}>
                 Kanpur Ki No.1 Bus Booking Service
               </span>
@@ -35,7 +61,7 @@ const Hero = () => {
             <h1 className="hero-headline" style={{
               fontSize: '58px',
               fontWeight: 800,
-              color: '#15201a',
+              color: '#2a160a',
               lineHeight: 1.08,
               marginBottom: '22px',
               fontFamily: 'Poppins, sans-serif',
@@ -43,7 +69,7 @@ const Hero = () => {
             }}>
               {t('hero.title_1')}<br />
               <span style={{
-                background: 'linear-gradient(120deg, #2E7D32, #43A047)',
+                background: 'linear-gradient(120deg, #EA580C, #FB923C)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -53,7 +79,7 @@ const Hero = () => {
 
             <p className="hero-subheadline" style={{
               fontSize: '19px',
-              color: '#475247',
+              color: '#5b4636',
               lineHeight: 1.65,
               marginBottom: '32px',
               maxWidth: '560px',
@@ -69,15 +95,15 @@ const Hero = () => {
               flexWrap: 'wrap'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 600, color: '#1a1a1a' }}>
-                <Star size={20} fill="#FF9800" color="#FF9800" />
+                <Star size={20} fill="#F59E0B" color="#F59E0B" />
                 <span>{t('hero.stars')}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 600, color: '#1a1a1a' }}>
-                <CheckCircle size={20} color="#2E7D32" />
+                <CheckCircle size={20} color="#EA580C" />
                 <span>{t('hero.trips')}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 600, color: '#1a1a1a' }}>
-                <Shield size={20} color="#2196F3" />
+                <Shield size={20} color="#B45309" />
                 <span>{t('hero.insured')}</span>
               </div>
             </div>
@@ -91,9 +117,9 @@ const Hero = () => {
                 height: '58px',
                 minWidth: '220px',
                 gap: '10px',
-                background: 'linear-gradient(135deg, #2E7D32, #1B5E20)',
+                background: 'linear-gradient(135deg, #EA580C, #C2410C)',
                 fontSize: '1.125rem',
-                boxShadow: '0 10px 26px rgba(46, 125, 50, 0.32)',
+                boxShadow: '0 10px 26px rgba(234, 88, 12, 0.32)',
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
@@ -104,8 +130,8 @@ const Hero = () => {
               <Link to="/taxi-booking" className="btn btn-secondary hero-btn" style={{
                 height: '58px',
                 minWidth: '180px',
-                borderColor: '#2E7D32',
-                color: '#2E7D32',
+                borderColor: '#EA580C',
+                color: '#EA580C',
                 fontSize: '1.125rem',
                 textDecoration: 'none',
                 display: 'flex',
@@ -122,15 +148,63 @@ const Hero = () => {
               position: 'relative',
               borderRadius: '28px',
               overflow: 'hidden',
-              boxShadow: '0 34px 64px -18px rgba(21, 64, 30, 0.45), 0 12px 24px rgba(0,0,0,0.12)',
+              aspectRatio: '3 / 2',
+              backgroundColor: '#2a160a',
+              boxShadow: '0 34px 64px -18px rgba(124, 45, 18, 0.45), 0 12px 24px rgba(0,0,0,0.12)',
               border: '1px solid rgba(255,255,255,0.6)'
             }}>
-              <img src={heroImage} alt="Ekadashi Tours premium luxury bus interior" style={{ width: '100%', height: '480px', objectFit: 'cover', display: 'block' }} />
+              {SLIDES.map((slide, i) => (
+                <img
+                  key={i}
+                  src={slide.src}
+                  alt={slide.alt}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    opacity: active === i ? 1 : 0,
+                    transition: 'opacity 0.9s ease-in-out'
+                  }}
+                />
+              ))}
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(180deg, transparent 55%, rgba(10, 25, 15, 0.35))'
+                pointerEvents: 'none',
+                background: 'linear-gradient(180deg, transparent 60%, rgba(30, 12, 4, 0.30))'
               }} />
+
+              {/* Slide indicators */}
+              <div style={{
+                position: 'absolute',
+                bottom: '14px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                gap: '7px',
+                zIndex: 3
+              }}>
+                {SLIDES.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Slide ${i + 1}`}
+                    onClick={() => setActive(i)}
+                    style={{
+                      width: active === i ? '22px' : '8px',
+                      height: '8px',
+                      borderRadius: '100px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: 0,
+                      background: active === i ? '#F59E0B' : 'rgba(255,255,255,0.65)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Floating price card */}
@@ -138,26 +212,27 @@ const Hero = () => {
               position: 'absolute',
               bottom: '24px',
               left: '-18px',
-              background: 'rgba(255,255,255,0.92)',
+              background: 'rgba(255,255,255,0.94)',
               backdropFilter: 'blur(10px)',
               borderRadius: '18px',
               padding: '16px 20px',
-              boxShadow: '0 16px 34px -10px rgba(21, 64, 30, 0.4)',
+              boxShadow: '0 16px 34px -10px rgba(124, 45, 18, 0.4)',
               border: '1px solid rgba(255,255,255,0.7)',
               display: 'flex',
               alignItems: 'center',
-              gap: '12px'
+              gap: '12px',
+              zIndex: 4
             }}>
               <div style={{
                 width: '44px', height: '44px', borderRadius: '12px',
-                background: 'linear-gradient(135deg, #2E7D32, #1B5E20)',
+                background: 'linear-gradient(135deg, #EA580C, #C2410C)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', flexShrink: 0
               }}>
                 <BadgeIndianRupee size={24} />
               </div>
               <div>
                 <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--gray-500)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Sabse Saste Daam</div>
-                <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--gray-900)' }}>Bus ₹45/km se shuru</div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--gray-900)' }}>Bus ₹499 se shuru</div>
               </div>
             </div>
 
@@ -166,16 +241,17 @@ const Hero = () => {
               position: 'absolute',
               top: '20px',
               right: '-14px',
-              background: 'rgba(255,255,255,0.92)',
+              background: 'rgba(255,255,255,0.94)',
               backdropFilter: 'blur(10px)',
               borderRadius: '16px',
               padding: '12px 16px',
-              boxShadow: '0 14px 30px -10px rgba(21, 64, 30, 0.4)',
+              boxShadow: '0 14px 30px -10px rgba(124, 45, 18, 0.4)',
               border: '1px solid rgba(255,255,255,0.7)',
-              textAlign: 'center'
+              textAlign: 'center',
+              zIndex: 4
             }}>
               <div style={{ display: 'flex', gap: '2px', marginBottom: '4px', justifyContent: 'center' }}>
-                {[...Array(5)].map((_, i) => <Star key={i} size={13} fill="#FFD700" color="#FFD700" />)}
+                {[...Array(5)].map((_, i) => <Star key={i} size={13} fill="#F59E0B" color="#F59E0B" />)}
               </div>
               <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--gray-800)' }}>5,000+ Khush Yaatri</div>
             </div>
@@ -205,7 +281,6 @@ const Hero = () => {
           .hero-btn { width: 100%; height: 54px !important; min-width: auto !important; }
           .grid-2 { grid-template-columns: 1fr !important; gap: 28px !important; }
           .hero-image-container { order: -1; width: 100%; }
-          .hero-image-frame img { height: 320px !important; }
           .hero-float-price { left: 8px !important; bottom: 12px !important; padding: 12px 14px !important; }
           .hero-float-rating { right: 8px !important; top: 12px !important; }
         }

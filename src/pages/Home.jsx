@@ -36,7 +36,7 @@ const Home = () => {
               borderRadius: '28px',
               textAlign: 'center',
               border: '2px solid var(--primary)',
-              boxShadow: '0 20px 40px -10px rgba(46, 125, 50, 0.25)'
+              boxShadow: '0 20px 40px -10px rgba(234, 88, 12, 0.25)'
             }}>
               <div style={{
                 position: 'absolute',
@@ -55,7 +55,7 @@ const Home = () => {
               <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🚌</div>
               <h3 style={{ marginBottom: '16px' }}>{t('home.bus_title')}</h3>
               <p style={{ color: 'var(--gray-600)', marginBottom: '24px' }}>{t('home.bus_desc')}</p>
-              <a href="/bus-booking" className="btn btn-primary" style={{ background: 'linear-gradient(135deg, #2E7D32, #1B5E20)' }}>{t('hero.cta_bus')}</a>
+              <a href="/bus-booking" className="btn btn-primary" style={{ background: 'linear-gradient(135deg, #EA580C, #C2410C)' }}>{t('hero.cta_bus')}</a>
             </div>
             <div style={{ padding: '40px', backgroundColor: 'var(--gray-50)', borderRadius: '24px', textAlign: 'center', border: '1px solid var(--gray-100)' }}>
               <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🚖</div>

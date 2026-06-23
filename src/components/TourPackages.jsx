@@ -1,196 +1,167 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Clock, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Clock, Send, Landmark, Mountain, RouteIcon, MapPin, Repeat } from 'lucide-react';
 import { CONFIG } from '../config';
 
-// Images
-import manaliImg from '../assets/manali.png';
-import varanasiImg from '../assets/varanasi.png';
-import jaipurImg from '../assets/jaipur.png';
-import chardhamImg from '../assets/chardham.png';
-import nepalImg from '../assets/nepal.png';
-import goaImg from '../assets/goa.png';
+// Real yatra packages run by Ekadashi Tours from Kanpur.
+// `days` is only set where a fixed duration is known; one-way/return darshan
+// trips show a "Return Trip" tag instead. Prices are only shown where fixed.
+const YATRAS = [
+  { name: 'कानपुर देव दर्शन यात्रा', sub: 'Kanpur Local Darshan', Icon: Landmark, tag: 'darshan' },
+  { name: 'कानपुर ⟷ खाटूश्याम जी', sub: 'Khatu Shyam Ji • Return', Icon: Repeat, tag: 'return' },
+  { name: 'कानपुर ⟷ महाकालेश्वर (उज्जैन)', sub: 'Mahakaleshwar, Ujjain • Return', Icon: Repeat, tag: 'return' },
+  { name: 'कानपुर ⟷ काठगोदाम (नैनीताल)', sub: 'Kathgodam / Nainital • Return', Icon: Mountain, tag: 'return' },
+  { name: 'कानपुर ⟷ दिल्ली', sub: 'Delhi • Return', Icon: Repeat, tag: 'return' },
+  { name: 'अयोध्या • बनारस • प्रयागराज', sub: 'Triveni Teerth Yatra', Icon: Landmark, days: 3 },
+  { name: 'खाटूश्याम • सालासर • मेहंदीपुर', sub: 'Shyam–Balaji Yatra', Icon: Landmark, days: 3 },
+  { name: 'महाकालेश्वर • ओंकारेश्वर • सीहोर', sub: 'Jyotirlinga Darshan', Icon: Landmark, days: 3 },
+  { name: '7 ज्योतिर्लिंग यात्रा', sub: 'Saat Jyotirlinga Yatra', Icon: Landmark, days: 12, featured: true },
+  { name: 'कामाख्या देवी • काठमांडू (नेपाल)', sub: 'Kamakhya + Nepal Yatra', Icon: Mountain, days: 12, price: '₹75,000 se suru', featured: true },
+  { name: 'अमरनाथ यात्रा', sub: 'Baba Barfani Darshan', Icon: Mountain, days: 12 },
+  { name: 'कन्याकुमारी • रामेश्वरम • जगन्नाथ पुरी', sub: 'Dakshin Bharat Yatra', Icon: RouteIcon, days: 14, featured: true },
+  { name: 'चार धाम यात्रा', sub: 'Uttarakhand Char Dham', Icon: Mountain, tag: 'darshan' },
+];
 
 const TourPackages = () => {
   const { t } = useTranslation();
 
-  const simplePackages = [
-    { titleKey: 'manali_title', descKey: 'manali_desc', img: manaliImg, location: 'Himachal Pradesh' },
-    { titleKey: 'varanasi_title', descKey: 'varanasi_desc', img: varanasiImg, location: 'Uttar Pradesh' },
-    { titleKey: 'jaipur_title', descKey: 'jaipur_desc', img: jaipurImg, location: 'Rajasthan' },
-    { titleKey: 'goa_title', descKey: 'goa_desc', img: goaImg, location: 'Goa' },
-  ];
-
-  const fullPackages = [
-    { 
-      titleKey: 'chardham_title', 
-      descKey: 'chardham_desc', 
-      img: chardhamImg, 
-      duration: '10', 
-      price: '₹1,40,000',
-      tag: 'Most Popular Pilgrimage'
-    },
-    { 
-      titleKey: 'nepal_title', 
-      descKey: 'nepal_desc', 
-      img: nepalImg, 
-      duration: '6', 
-      price: '₹75,000',
-      tag: 'International Expedition'
-    }
-  ];
-
-  const handleBookNow = (title) => {
-    const message = `Namaste! I am interested in booking the ${title} tour package with Ekadashi Tours. Please provide more details.`;
+  const handleBookNow = (yatraName) => {
+    const message = `Namaste! Main "${yatraName}" yatra ke baare mein jaankari aur booking chahta/chahti hoon. Kripya details bhejein. (Ekadashi Tours)`;
     window.location.href = `https://wa.me/${CONFIG.business.whatsapp}?text=${encodeURIComponent(message)}`;
   };
 
   return (
-    <section id="tours" className="section" style={{ backgroundColor: '#f9fafb' }}>
+    <section id="tours" className="section" style={{ background: 'linear-gradient(180deg, #fff8f3 0%, #fdeede 100%)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', color: 'var(--gray-900)' }}>{t('tours.title')}</h2>
-          <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem', maxWidth: '700px', margin: '0 auto' }}>{t('tours.subtitle')}</p>
-        </div>
-
-        {/* Simple Packages Grid */}
-        <div className="tour-grid" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          gap: '30px',
-          marginBottom: '100px'
-        }}>
-          {simplePackages.map((pkg, idx) => (
-            <div key={idx} className="tour-card" style={{ 
-              backgroundColor: 'white', 
-              borderRadius: '24px', 
-              overflow: 'hidden', 
-              boxShadow: 'var(--shadow-md)',
-              transition: 'all 0.3s ease',
-              border: '1px solid var(--gray-100)'
-            }}>
-              <div style={{ height: '220px', overflow: 'hidden', position: 'relative' }}>
-                <img src={pkg.img} alt={t(`tours.${pkg.titleKey}`)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', top: '20px', left: '20px', backgroundColor: 'rgba(255,255,255,0.9)', padding: '6px 12px', borderRadius: '100px', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8125rem', fontWeight: 600 }}>
-                  <MapPin size={14} color="var(--primary)" /> {pkg.location}
-                </div>
-              </div>
-              <div style={{ padding: '24px' }}>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>{t(`tours.${pkg.titleKey}`)}</h3>
-                <p style={{ color: 'var(--gray-500)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '24px', height: '4.8em', overflow: 'hidden' }}>
-                  {t(`tours.${pkg.descKey}`)}
-                </p>
-                <button 
-                  onClick={() => handleBookNow(t(`tours.${pkg.titleKey}`))}
-                  className="btn-wa-tour"
-                  style={{ 
-                    width: '100%', 
-                    backgroundColor: '#25D336', 
-                    color: 'white', 
-                    border: 'none', 
-                    borderRadius: '12px', 
-                    padding: '12px', 
-                    fontWeight: 700, 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    gap: '8px', 
-                    cursor: 'pointer' 
-                  }}
-                >
-                  <Send size={18} /> {t('tours.book_wa')}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Full Packages Section */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div style={{ display: 'inline-block', padding: '8px 20px', backgroundColor: 'rgba(34, 197, 94, 0.1)', color: 'var(--primary)', borderRadius: '100px', fontSize: '0.875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
-Sab Kuch Shaamil • Fixed Pricing
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            padding: '8px 20px', backgroundColor: 'rgba(234, 88, 12, 0.10)',
+            color: 'var(--primary-dark)', borderRadius: '100px',
+            fontSize: '0.8125rem', fontWeight: 700, textTransform: 'uppercase',
+            letterSpacing: '0.05em', marginBottom: '18px'
+          }}>
+            <MapPin size={15} /> Kanpur • Unnao • Lucknow
           </div>
-          <h2 style={{ fontSize: '2.25rem', marginBottom: '16px' }}>{t('tours.full_package_title')}</h2>
-          <p style={{ color: 'var(--gray-600)', maxWidth: '600px', margin: '0 auto' }}>{t('tours.full_package_subtitle')}</p>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', color: 'var(--gray-900)' }}>{t('tours.title')}</h2>
+          <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem', maxWidth: '720px', margin: '0 auto' }}>{t('tours.subtitle')}</p>
         </div>
 
-        <div className="full-tour-grid" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', 
-          gap: '40px' 
+        <div className="yatra-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gap: '24px'
         }}>
-          {fullPackages.map((pkg, idx) => (
-            <div key={idx} className="full-tour-card" style={{ 
-              display: 'flex', 
-              backgroundColor: 'white', 
-              borderRadius: '32px', 
-              overflow: 'hidden', 
-              boxShadow: 'var(--shadow-lg)',
-              border: '1px solid var(--gray-100)'
-            }}>
-              <div style={{ width: '40%', position: 'relative' }}>
-                <img src={pkg.img} alt={t(`tours.${pkg.titleKey}`)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', top: '20px', left: '20px', backgroundColor: 'var(--primary)', color: 'white', padding: '6px 14px', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 700 }}>
-                  {pkg.tag}
+          {YATRAS.map((y, idx) => {
+            const Icon = y.Icon;
+            return (
+              <div key={idx} className="yatra-card" style={{
+                position: 'relative',
+                backgroundColor: 'white',
+                borderRadius: '22px',
+                overflow: 'hidden',
+                boxShadow: 'var(--shadow-md)',
+                border: y.featured ? '2px solid var(--primary)' : '1px solid var(--gray-100)',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+                {/* Gradient header strip */}
+                <div style={{
+                  position: 'relative',
+                  padding: '22px 22px 18px',
+                  background: y.featured
+                    ? 'linear-gradient(135deg, #EA580C, #C2410C)'
+                    : 'linear-gradient(135deg, #FB923C, #EA580C)',
+                  color: 'white'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
+                    <div style={{
+                      width: '46px', height: '46px', borderRadius: '13px',
+                      background: 'rgba(255,255,255,0.18)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      backdropFilter: 'blur(4px)'
+                    }}>
+                      <Icon size={24} color="white" />
+                    </div>
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '5px',
+                      background: 'rgba(255,255,255,0.20)',
+                      padding: '5px 11px', borderRadius: '100px',
+                      fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.02em'
+                    }}>
+                      {y.days
+                        ? <><Clock size={12} /> {y.days} {t('tours.days')}</>
+                        : y.tag === 'return'
+                          ? <><Repeat size={12} /> Return Trip</>
+                          : <><Landmark size={12} /> Darshan</>}
+                    </div>
+                  </div>
+                  <h3 style={{
+                    fontSize: '1.18rem', color: 'white', margin: 0, lineHeight: 1.3,
+                    fontFamily: 'Poppins, sans-serif'
+                  }}>{y.name}</h3>
+                </div>
+
+                {/* Body */}
+                <div style={{ padding: '18px 22px 22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <p style={{ color: 'var(--gray-500)', fontSize: '0.875rem', fontWeight: 600, margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    {y.sub}
+                  </p>
+
+                  {y.price ? (
+                    <div style={{ marginBottom: '16px' }}>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--gray-400)', textTransform: 'uppercase', fontWeight: 700 }}>{t('tours.from')}</span>
+                      <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary)' }}>{y.price}</div>
+                    </div>
+                  ) : (
+                    <p style={{ color: 'var(--gray-400)', fontSize: '0.8125rem', marginBottom: '16px' }}>
+                      AC Luxury Bus • Experienced Driver
+                    </p>
+                  )}
+
+                  <button
+                    onClick={() => handleBookNow(y.name)}
+                    className="btn-wa-yatra"
+                    style={{
+                      marginTop: 'auto',
+                      width: '100%',
+                      backgroundColor: '#25D366',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '12px',
+                      padding: '12px',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      cursor: 'pointer',
+                      fontFamily: 'Inter, sans-serif',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    <Send size={17} /> {t('tours.book_wa')}
+                  </button>
                 </div>
               </div>
-              <div style={{ width: '60%', padding: '32px', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                  <h3 style={{ fontSize: '1.5rem', margin: 0 }}>{t(`tours.${pkg.titleKey}`)}</h3>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--gray-400)', textTransform: 'uppercase', fontWeight: 700 }}>{t('tours.from')}</div>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--primary)' }}>{pkg.price}</div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--gray-600)', fontSize: '0.875rem' }}>
-                    <Clock size={16} /> {pkg.duration} {t('tours.days')}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--gray-600)', fontSize: '0.875rem' }}>
-                    <CheckCircle2 size={16} color="#25D336" /> Sab Shaamil
-                  </div>
-                </div>
-
-                <p style={{ color: 'var(--gray-500)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '24px', flex: 1 }}>
-                  {t(`tours.${pkg.descKey}`)}
-                </p>
-
-                <button 
-                  onClick={() => handleBookNow(t(`tours.${pkg.titleKey}`))}
-                  className="btn btn-primary" 
-                  style={{ width: '100%', borderRadius: '14px', height: '52px' }}
-                >
-                  {t('common.book_now')}
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       <style>{`
-        .tour-card:hover {
-          transform: translateY(-10px);
+        .yatra-card:hover {
+          transform: translateY(-8px);
           box-shadow: var(--shadow-xl);
           border-color: var(--primary-light);
         }
-        .btn-wa-tour:hover {
-          background-color: #1ebe2d !important;
+        .btn-wa-yatra:hover {
+          background-color: #1ebe57 !important;
           transform: scale(1.02);
         }
-        .full-tour-card {
-          transition: transform 0.3s ease;
-        }
-        .full-tour-card:hover {
-          transform: scale(1.01);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        @media (max-width: 768px) {
-          .full-tour-card { flex-direction: column; }
-          .full-tour-card > div { width: 100% !important; }
-          .full-tour-card img { height: 200px; }
-          .full-tour-grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 600px) {
+          .yatra-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
