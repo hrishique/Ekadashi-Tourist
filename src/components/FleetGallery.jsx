@@ -45,7 +45,7 @@ const FleetGallery = () => {
   return (
     <section id="gallery" className="section" style={{ backgroundColor: 'var(--gray-900)', padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
       {/* ambient glow */}
-      <div style={{ position: 'absolute', top: '-120px', left: '50%', transform: 'translateX(-50%)', width: '600px', height: '300px', background: 'radial-gradient(ellipse, rgba(46,125,50,0.25), transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '-120px', left: '50%', transform: 'translateX(-50%)', width: '600px', height: '300px', background: 'radial-gradient(ellipse, rgba(234,88,12,0.25), transparent 70%)', pointerEvents: 'none' }} />
 
       <div className="container" style={{ position: 'relative' }}>
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
@@ -79,7 +79,7 @@ const FleetGallery = () => {
               }}>
                 <span style={{
                   alignSelf: 'flex-start',
-                  backgroundColor: 'rgba(46,125,50,0.9)', color: 'white',
+                  backgroundColor: 'rgba(234,88,12,0.9)', color: 'white',
                   fontSize: '0.68rem', fontWeight: 700, padding: '4px 10px', borderRadius: '100px',
                   marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.04em'
                 }}>{p.tag}</span>
@@ -120,7 +120,7 @@ const FleetGallery = () => {
           <div className="fade-in" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '900px', width: '100%', textAlign: 'center' }}>
             <img src={PHOTOS[lightbox].src} alt={PHOTOS[lightbox].label} style={{ maxWidth: '100%', maxHeight: '78vh', objectFit: 'contain', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,0.5)', margin: '0 auto' }} />
             <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-              <span style={{ backgroundColor: 'rgba(46,125,50,0.9)', color: 'white', fontSize: '0.7rem', fontWeight: 700, padding: '4px 12px', borderRadius: '100px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{PHOTOS[lightbox].tag}</span>
+              <span style={{ backgroundColor: 'rgba(234,88,12,0.9)', color: 'white', fontSize: '0.7rem', fontWeight: 700, padding: '4px 12px', borderRadius: '100px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{PHOTOS[lightbox].tag}</span>
               <span style={{ color: 'white', fontWeight: 600, fontSize: '1.0625rem' }}>{PHOTOS[lightbox].label}</span>
               <span style={{ color: 'var(--gray-500)', fontSize: '0.8125rem' }}>{lightbox + 1} / {PHOTOS.length}</span>
             </div>
@@ -142,7 +142,7 @@ const FleetGallery = () => {
         .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6); }
         .gallery-img { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
         .gallery-item:hover .gallery-img { transform: scale(1.08); }
-        .lb-nav:hover { background-color: rgba(46,125,50,0.85) !important; }
+        .lb-nav:hover { background-color: rgba(234,88,12,0.85) !important; }
 
         @media (max-width: 1024px) {
           .gallery-bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; }

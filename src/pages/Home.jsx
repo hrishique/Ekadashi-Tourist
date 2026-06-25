@@ -28,7 +28,7 @@ const Home = () => {
             <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{t('home.services_title')}</h2>
             <p style={{ color: 'var(--gray-600)', fontSize: '1.125rem' }}>{t('home.services_subtitle')}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', maxWidth: '1000px', margin: '0 auto' }}>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', maxWidth: '1000px', margin: '0 auto' }}>
             <div style={{
               position: 'relative',
               padding: '44px 40px',
@@ -65,6 +65,12 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        <style>{`
+          @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          }
+        `}</style>
       </section>
 
       <TourPackages />

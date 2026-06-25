@@ -52,8 +52,8 @@ const Hero = () => {
               border: '1px solid rgba(234, 88, 12, 0.20)',
               marginBottom: '22px'
             }}>
-              <Star size={14} fill="#F59E0B" color="#F59E0B" />
-              <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--primary-dark)', letterSpacing: '0.02em' }}>
+              <Star size={14} fill="#F59E0B" color="#F59E0B" style={{ flexShrink: 0 }} />
+              <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--primary-dark)', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
                 Kanpur Ki No.1 Bus Booking Service
               </span>
             </div>
@@ -255,6 +255,29 @@ const Hero = () => {
               </div>
               <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--gray-800)' }}>5,000+ Khush Yaatri</div>
             </div>
+
+            {/* Mobile-only stats row — shown below the image instead of floating on top of it */}
+            <div className="hero-mobile-stats">
+              <div className="hero-mobile-stat">
+                <div className="stat-icon" style={{
+                  width: '38px', height: '38px', borderRadius: '10px',
+                  background: 'linear-gradient(135deg, #EA580C, #C2410C)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', flexShrink: 0
+                }}>
+                  <BadgeIndianRupee size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.66rem', fontWeight: 700, color: 'var(--gray-500)', textTransform: 'uppercase', letterSpacing: '0.03em' }}>Sabse Saste Daam</div>
+                  <div className="stat-value" style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--gray-900)' }}>Bus ₹499 se shuru</div>
+                </div>
+              </div>
+              <div className="hero-mobile-stat">
+                <div style={{ display: 'flex', gap: '2px', flexShrink: 0 }}>
+                  {[...Array(5)].map((_, i) => <Star key={i} size={13} fill="#F59E0B" color="#F59E0B" />)}
+                </div>
+                <div className="stat-value" style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--gray-800)' }}>5,000+ Khush Yaatri</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -268,25 +291,73 @@ const Hero = () => {
           from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        .hero-mobile-stats { display: none; }
         @media (max-width: 1200px) {
           .hero-headline { font-size: 46px !important; }
         }
         @media (max-width: 768px) {
-          .hero-section { padding: 40px 16px 56px !important; }
-          .hero-headline { font-size: 34px !important; text-align: center; }
+          .hero-section { padding: 32px 16px 48px !important; }
+          .hero-headline { font-size: 32px !important; text-align: center; }
           .hero-subheadline { font-size: 16px !important; text-align: center; margin-inline: auto; margin-bottom: 24px !important; }
-          .hero-eyebrow { margin-left: 50%; transform: translateX(-50%); }
-          .trust-badges { justify-content: center; gap: 12px !important; margin-bottom: 24px !important; }
+          .hero-eyebrow {
+            display: flex !important;
+            width: fit-content;
+            margin: 0 auto 22px !important;
+            padding: 7px 14px !important;
+          }
+          .hero-eyebrow span { font-size: 0.75rem !important; }
+          .trust-badges {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
+            margin-bottom: 24px !important;
+          }
+          .trust-badges > div {
+            flex-direction: column !important;
+            justify-content: center;
+            text-align: center;
+            gap: 4px !important;
+            font-size: 12px !important;
+            line-height: 1.25;
+          }
           .cta-buttons { flex-direction: column; width: 100%; gap: 12px !important; }
           .hero-btn { width: 100%; height: 54px !important; min-width: auto !important; }
-          .grid-2 { grid-template-columns: 1fr !important; gap: 28px !important; }
+          .grid-2 { grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; }
+          .grid-2 > div { min-width: 0 !important; width: 100% !important; }
           .hero-image-container { order: -1; width: 100%; }
-          .hero-float-price { left: 8px !important; bottom: 12px !important; padding: 12px 14px !important; }
-          .hero-float-rating { right: 8px !important; top: 12px !important; }
+
+          /* On mobile, the floating cards overlap the poster text — move
+             the same info into a horizontal row below the image instead. */
+          .hero-float-price, .hero-float-rating { display: none !important; }
+          .hero-mobile-stats {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+          }
+          .hero-mobile-stat {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--gray-100);
+            border-radius: 14px;
+            padding: 10px 10px;
+            box-shadow: var(--shadow-sm);
+          }
+          .hero-mobile-stat > div:last-child { min-width: 0; }
+          .hero-mobile-stat .stat-value { white-space: normal; line-height: 1.2; }
         }
         @media (max-width: 480px) {
-          .hero-headline { font-size: 28px !important; }
-          .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px !important; justify-items: center; }
+          .hero-headline { font-size: 27px !important; }
+          .hero-eyebrow span { font-size: 0.6875rem !important; }
+          .hero-mobile-stat { padding: 8px 8px; gap: 6px; }
+          .hero-mobile-stat .stat-icon { width: 30px !important; height: 30px !important; }
+          .hero-mobile-stat .stat-value { font-size: 0.78rem !important; }
+        }
+        @media (max-width: 360px) {
+          .hero-mobile-stat .stat-value { font-size: 0.72rem !important; }
         }
       `}</style>
     </section>
