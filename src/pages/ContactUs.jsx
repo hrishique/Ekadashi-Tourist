@@ -1,10 +1,16 @@
 import React from 'react';
 import { Phone, Mail, MapPin, MessageCircle, Clock, Send } from 'lucide-react';
 import { CONFIG } from '../config';
+import Seo from '../components/Seo';
 
 const ContactUs = () => {
   return (
     <main style={{ paddingTop: '80px' }}>
+      <Seo
+        title="Contact Ekadashi Tours | Booking 7275732399 | Kanpur & Lucknow"
+        description="Bus aur taxi booking ke liye sampark karein — Vijay Gupta, 7275732399. Boarding: Transport Nagar Lucknow aur Ramadevi Chauraha Kanpur. Booking 10 din pehle tak manya."
+        path="/contact"
+      />
       <section className="section" style={{ backgroundColor: 'var(--gray-50)', padding: '100px 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '80px' }}>

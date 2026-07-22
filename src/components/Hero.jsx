@@ -2,23 +2,30 @@ import { useState, useEffect } from 'react';
 import { Star, CheckCircle, Shield, ArrowRight, BadgeIndianRupee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import posterKathgodam from '../assets/poster-kathgodam.jpg';
-import posterMahakaleshwar from '../assets/poster-mahakaleshwar.jpg';
-import posterKhatushyam from '../assets/poster-khatushyam.jpg';
-import busWide from '../assets/real-bus-seats-wide.jpg';
-import busExterior from '../assets/real-bus-exterior.jpg';
-
+import bannerKhatushyam from '../assets/banner-khatushyam.jpg';
+import bannerMahakaleshwar from '../assets/banner-mahakaleshwar.jpg';
+import bannerVrindavan from '../assets/banner-vrindavan.jpg';
+import bannerKainchi from '../assets/banner-kainchi-dham.jpg';
+import bannerBageshwar from '../assets/banner-bageshwar-dham.jpg';
+import bannerJaipur from '../assets/banner-jaipur.jpg';
+import bannerDelhi from '../assets/banner-delhi.jpg';
+import bannerDevDarshan from '../assets/banner-kanpur-dev-darshan.jpg';
 // How long each slide stays before auto-advancing (ms).
 // You asked for ~1 second — these posters are text-heavy, so 3.5s gives
 // time to read. Lower this to 1000 for a 1-second rotation.
 const ROTATE_MS = 3500;
 
+// Official Ekadashi Tour's route banners — same posters that run in the
+// Daily AC Sleeper section below, so the hero always matches live service.
 const SLIDES = [
-  { src: posterKathgodam, alt: 'Kanpur se Kathgodam (Nainital) AC Sleeper Bus - Ekadashi Tours' },
-  { src: posterKhatushyam, alt: 'Kanpur se Khatu Shyam Ji AC Sleeper Bus - Ekadashi Tours' },
-  { src: posterMahakaleshwar, alt: 'Kanpur se Mahakaleshwar (Ujjain) AC Sleeper Bus - Ekadashi Tours' },
-  { src: busWide, alt: 'Ekadashi Tours premium luxury bus interior' },
-  { src: busExterior, alt: 'Ekadashi Tours premium coach exterior' },
+  { src: bannerKhatushyam, alt: 'Lucknow aur Kanpur se Khatu Shyam Ji (Ringas, Sikar) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerMahakaleshwar, alt: 'Lucknow aur Kanpur se Mahakaleshwar (Ujjain) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerVrindavan, alt: 'Lucknow aur Kanpur se Shri Vrindavan (Chhatikara) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerKainchi, alt: 'Kanpur se Kathgodam (Kainchi Dham) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerBageshwar, alt: 'Lucknow aur Kanpur se Bageshwar Dham Sarkar (Chhatarpur) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerJaipur, alt: 'Lucknow aur Kanpur se Jaipur (Gulabi Nagri) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerDelhi, alt: 'Lucknow aur Kanpur se New Delhi (Kashmiri Gate) AC Sleeper Bus — Ekadashi Tours' },
+  { src: bannerDevDarshan, alt: 'Kanpur Dev Darshan — har Ravivar ₹499 mein 10 mandir bus yatra — Ekadashi Tours' },
 ];
 
 const Hero = () => {
@@ -148,7 +155,9 @@ const Hero = () => {
               position: 'relative',
               borderRadius: '28px',
               overflow: 'hidden',
-              aspectRatio: '3 / 2',
+              /* Route banners are square (1:1) — matching the frame keeps the
+                 poster text readable instead of cropping it away. */
+              aspectRatio: '1 / 1',
               backgroundColor: '#2a160a',
               boxShadow: '0 34px 64px -18px rgba(124, 45, 18, 0.45), 0 12px 24px rgba(0,0,0,0.12)',
               border: '1px solid rgba(255,255,255,0.6)'
@@ -158,6 +167,9 @@ const Hero = () => {
                   key={i}
                   src={slide.src}
                   alt={slide.alt}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={i === 0 ? 'high' : 'low'}
+                  decoding="async"
                   style={{
                     position: 'absolute',
                     inset: 0,

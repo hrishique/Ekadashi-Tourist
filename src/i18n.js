@@ -9,6 +9,7 @@ const resources = {
         "home": "Home",
         "taxi": "Taxi",
         "buses": "Bus Booking",
+        "daily": "Daily Sleeper",
         "tours": "Tour Package",
         "about": "Hamare Baare Mein",
         "contact": "Sampark",
@@ -105,8 +106,8 @@ const resources = {
         "email_team": "TEAM KO EMAIL KAREIN"
       },
       "tours": {
-        "title": "Hamari Special Yatrayein",
-        "subtitle": "Kanpur se pavitra teerth yatra — AC luxury bus, anubhavi driver aur poori vyavastha ke saath. \"Yeh vyavsay nahi, shraddhaluon ki seva hai.\"",
+        "title": "Multi-Day Teerth Yatra Packages",
+        "subtitle": "3 din se 14 din tak ki poori yatra — Kanpur se AC luxury bus, anubhavi driver aur complete vyavastha ke saath. \"Yeh vyavsay nahi, shraddhaluon ki seva hai.\"",
         "full_package_title": "Full Group Package",
         "full_package_subtitle": "Toll, parking, state tax aur professional driver — sab kuch shaamil, poora itinerary.",
         "book_wa": "WhatsApp Pe Book Karein",
@@ -151,6 +152,7 @@ const resources = {
         "home": "होम",
         "taxi": "टैक्सी",
         "buses": "बस बुकिंग",
+        "daily": "डेली स्लीपर",
         "tours": "टूर पैकेज",
         "about": "हमारे बारे में",
         "contact": "संपर्क करें",
@@ -247,8 +249,8 @@ const resources = {
         "email_team": "टीम को ईमेल करें"
       },
       "tours": {
-        "title": "हमारी विशेष यात्राएं",
-        "subtitle": "कानपुर से पवित्र तीर्थ यात्रा — एसी लग्ज़री बस, अनुभवी ड्राइवर और पूरी व्यवस्था के साथ। \"यह व्यवसाय नहीं, श्रद्धालुओं की सेवा है।\"",
+        "title": "मल्टी-डे तीर्थ यात्रा पैकेज",
+        "subtitle": "3 दिन से 14 दिन तक की पूरी यात्रा — कानपुर से एसी लग्ज़री बस, अनुभवी ड्राइवर और पूरी व्यवस्था के साथ। \"यह व्यवसाय नहीं, श्रद्धालुओं की सेवा है।\"",
         "full_package_title": "पूर्ण समूह पैकेज",
         "full_package_subtitle": "टोल, पार्किंग, राज्य कर और पेशेवर ड्राइवर सहित पूर्ण यात्रा कार्यक्रम।",
         "book_wa": "व्हाट्सएप के माध्यम से बुक करें",

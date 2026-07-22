@@ -271,12 +271,12 @@ export const Footer = () => {
       ]
     },
     { 
-      title: 'Services', 
+      title: 'Services',
       links: [
-        { name: 'Local Taxi', path: '/taxi-booking' },
-        { name: 'Outstation', path: '/taxi-booking' },
+        { name: 'Daily AC Sleeper', path: '/bus-booking' },
+        { name: 'Yatra Packages', path: '/bus-booking' },
         { name: 'Bus Rental', path: '/bus-booking' },
-        { name: 'Group Tours', path: '/bus-booking' }
+        { name: 'Taxi & Outstation', path: '/taxi-booking' }
       ]
     },
     { 

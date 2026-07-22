@@ -44,6 +44,7 @@ const Navbar = () => {
           <div style={{ display: 'flex', gap: '20px' }}>
             <Link to="/" className="nav-link">{t('nav.home')}</Link>
             <Link to="/bus-booking" className="nav-link">{t('nav.buses')}</Link>
+            <a href="/#daily-routes" className="nav-link">{t('nav.daily')}</a>
             <Link to="/taxi-booking" className="nav-link">{t('nav.taxi')}</Link>
             <a href="/#tours" className="nav-link">{t('nav.tours')}</a>
             <Link to="/about" className="nav-link">{t('nav.about')}</Link>
@@ -135,6 +136,7 @@ const Navbar = () => {
       }}>
         <Link to="/" onClick={toggleMenu} className="mobile-nav-link">{t('nav.home')}</Link>
         <Link to="/bus-booking" onClick={toggleMenu} className="mobile-nav-link">{t('nav.buses')}</Link>
+        <a href="/#daily-routes" onClick={toggleMenu} className="mobile-nav-link">{t('nav.daily')}</a>
         <Link to="/taxi-booking" onClick={toggleMenu} className="mobile-nav-link">{t('nav.taxi')}</Link>
         <a href="/#tours" onClick={toggleMenu} className="mobile-nav-link">{t('nav.tours')}</a>
         <Link to="/about" onClick={toggleMenu} className="mobile-nav-link">{t('nav.about')}</Link>
