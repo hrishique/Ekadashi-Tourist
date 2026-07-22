@@ -3,15 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { Clock, Send, Landmark, Mountain, RouteIcon, MapPin, Repeat } from 'lucide-react';
 import { CONFIG } from '../config';
 
-// Real yatra packages run by Ekadashi Tours from Kanpur.
-// `days` is only set where a fixed duration is known; one-way/return darshan
-// trips show a "Return Trip" tag instead. Prices are only shown where fixed.
+// Multi-day yatra packages run by Ekadashi Tours from Kanpur.
+// Daily one-way AC sleeper routes and the weekly darshan trips live in
+// <DailyRoutes /> (banner-backed) — this section is only the longer packages.
+// `days` is only set where a fixed duration is known; open-dated yatras show a
+// "Darshan" tag instead. Prices are only shown where fixed.
 const YATRAS = [
-  { name: 'कानपुर देव दर्शन यात्रा', sub: 'Kanpur Local Darshan', Icon: Landmark, tag: 'darshan' },
-  { name: 'कानपुर ⟷ खाटूश्याम जी', sub: 'Khatu Shyam Ji • Return', Icon: Repeat, tag: 'return' },
-  { name: 'कानपुर ⟷ महाकालेश्वर (उज्जैन)', sub: 'Mahakaleshwar, Ujjain • Return', Icon: Repeat, tag: 'return' },
-  { name: 'कानपुर ⟷ काठगोदाम (नैनीताल)', sub: 'Kathgodam / Nainital • Return', Icon: Mountain, tag: 'return' },
-  { name: 'कानपुर ⟷ दिल्ली', sub: 'Delhi • Return', Icon: Repeat, tag: 'return' },
   { name: 'अयोध्या • बनारस • प्रयागराज', sub: 'Triveni Teerth Yatra', Icon: Landmark, days: 3 },
   { name: 'खाटूश्याम • सालासर • मेहंदीपुर', sub: 'Shyam–Balaji Yatra', Icon: Landmark, days: 3 },
   { name: 'महाकालेश्वर • ओंकारेश्वर • सीहोर', sub: 'Jyotirlinga Darshan', Icon: Landmark, days: 3 },

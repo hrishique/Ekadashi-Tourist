@@ -1,10 +1,16 @@
 import React from 'react';
 import { Users, Target, ShieldCheck, Clock, Award, Headphones } from 'lucide-react';
 import { CONFIG } from '../config';
+import Seo from '../components/Seo';
 
 const AboutUs = () => {
   return (
     <main style={{ paddingTop: '80px' }}>
+      <Seo
+        title="About Ekadashi Tour's and Travels | Kanpur, Unnao & Lucknow"
+        description="Ekadashi Tour's and Travels — एकादशी श्री श्याम यात्रा परिवार कानपुर. Daily AC sleeper buses, cabs and teerth yatra packages from Kanpur, Unnao and Lucknow. Yeh vyavsay nahi, shraddhaluon ki seva hai."
+        path="/about"
+      />
       <section className="section" style={{ backgroundColor: 'var(--gray-900)', color: 'white', padding: '120px 0' }}>
         <div className="container">
           <div style={{ maxWidth: '800px' }}>

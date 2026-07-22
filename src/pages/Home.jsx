@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import Seo from '../components/Seo';
 import Hero from '../components/Hero';
 import FleetGallery from '../components/FleetGallery';
 import WhyChooseUs from '../components/WhyChooseUs';
 import VehicleShowcase from '../components/VehicleShowcase';
 import BusRental from '../components/BusRental';
+import DailyRoutes from '../components/DailyRoutes';
 import Testimonials from '../components/Testimonials';
 import PricingCalculator from '../components/PricingCalculator';
 import TourPackages from '../components/TourPackages';
@@ -17,6 +19,11 @@ const Home = () => {
 
   return (
     <main>
+      <Seo
+        title="Ekadashi Tours | Daily AC Sleeper Tour Packages | All Bus's & Cabs"
+        description="Daily AC Sleeper bus from Lucknow & Kanpur to Khatushyam, Mahakaleshwar Ujjain, Vrindavan, Kainchi Dham, Bageshwar Dham, Sanwariya Seth, Jaipur, Delhi & Nainital. 6pm, 8pm & 9pm departures, cabs & group tour packages. 7275732399"
+        path="/"
+      />
       <Hero />
       <FleetGallery />
       <WhyChooseUs />
@@ -73,6 +80,7 @@ const Home = () => {
         `}</style>
       </section>
 
+      <DailyRoutes />
       <TourPackages />
       <Testimonials />
       <PricingCalculator />
